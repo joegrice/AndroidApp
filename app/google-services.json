@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "412702593478",
+    "firebase_url": "https://parliamentary12.firebaseio.com",
+    "project_id": "parliamentary12",
+    "storage_bucket": "parliamentary12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412702593478:android:aa22945b886e7791",
+        "android_client_info": {
+          "package_name": "com.parliamentary.androidapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412702593478-ludb6erq04439geschsbrt32gcc0s7a6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.parliamentary.androidapp",
+            "certificate_hash": "863b6e0b77786866ba983b3dcb4655193fa92607"
+          }
+        },
+        {
+          "client_id": "412702593478-08pes7pmhabrc1vpqt7g0hcskpgqt866.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.parliamentary.androidapp",
+            "certificate_hash": "e508bc9223618a0a55b763129ce7bd19f650d310"
+          }
+        },
+        {
+          "client_id": "412702593478-k8a650h685eqs24ss6b5aalm6ilbo7jm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA21DroqJbhZiP0_Laj_U_W5e74OZPhLzU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412702593478-k8a650h685eqs24ss6b5aalm6ilbo7jm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
