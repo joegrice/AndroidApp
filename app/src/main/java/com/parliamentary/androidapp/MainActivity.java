@@ -82,16 +82,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     JSONArray items = result.getJSONArray("items");
 
                     for (int i = 0; i < items.length(); i++) {
-                        JSONObject c = items.getJSONObject(i);
-                        String description = c.getString("_about");
-                        String title = c.getString("title");
+                        JSONObject item = items.getJSONObject(i);
+                        String title = item.getString("title");
+                        JSONObject dateObj = item.getJSONObject("date");
+                        String date = dateObj.getString("_value");
+
+                        String _about = item.getString("_about");
+                        String[] aboutSplit = _about.split("/");
+                        String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + aboutSplit[aboutSplit.length - 1] + ".json";
+                        jsonStr = sh.makeServiceCall(divisionUrl);
+                        jsonObj = new JSONObject(jsonStr);
+                        result = jsonObj.getJSONObject("result");
+                        JSONObject primaryTopic = result.getJSONObject("primaryTopic");
+
+                        JSONArray ayesCountArr = primaryTopic.getJSONArray("AyesCount");
+                        JSONObject ayesCountObj = ayesCountArr.getJSONObject(0);
+                        String ayesCount = "Ayes: " + ayesCountObj.getString("_value");
+
+                        JSONArray noesCountArr = primaryTopic.getJSONArray("Noesvotecount");
+                        JSONObject noesCountObj = noesCountArr.getJSONObject(0);
+                        String noesCount = "Noes: " + noesCountObj.getString("_value");
 
                         // tmp hash map for single contact
                         HashMap<String, String> contact = new HashMap<>();
 
                         // adding each child node to HashMap key => value
                         contact.put("title", title);
-                        contact.put("description", description);
+                        contact.put("date", date);
+                        contact.put("ayes", ayesCount);
+                        contact.put("noes", noesCount);
 
                         // adding contact to contact list
                         contactList.add(contact);
@@ -125,8 +144,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             ListAdapter adapter = new SimpleAdapter(MainActivity.this, contactList,
-                    R.layout.list_item, new String[]{"title", "description"},
-                    new int[]{R.id.bill_title, R.id.bill_description});
+                    R.layout.list_item, new String[]{"title", "date", "ayes", "noes"},
+                    new int[]{R.id.bill_title, R.id.bill_date, R.id.vote_ayes, R.id.vote_noes});
             lv.setAdapter(adapter);
         }
     }
