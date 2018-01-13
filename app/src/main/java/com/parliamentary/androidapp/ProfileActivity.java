@@ -51,13 +51,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        if (view == buttonLogout) {
-            mAuth.signOut();
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));
-        }
-        if (view == buttonListPage) {
-            startActivity(new Intent(this, MainActivity.class));
+        switch (view.getId()) {
+            case  R.id.buttonLogout:
+                mAuth.signOut();
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case  R.id.buttonListPage:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+            case  R.id.buttonMpPage:
+                startActivity(new Intent(this, MPActivity.class));
+                break;
         }
     }
 }

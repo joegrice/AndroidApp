@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
@@ -54,8 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case  R.id.buttonProfilePage:
-            startActivity(new Intent(this, ProfileActivity.class));
+            case R.id.buttonProfilePage:
+                startActivity(new Intent(this, ProfileActivity.class));
+                break;
+            case R.id.buttonMpPage:
+                startActivity(new Intent(this, MPActivity.class));
                 break;
         }
     }
