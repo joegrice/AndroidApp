@@ -23,7 +23,8 @@ public class MpCommonsDivisionsVotes extends AsyncTask<Object, Object, Object> {
 
     private String TAG = MainActivity.class.getSimpleName();
     public AsyncResponse delegate = null;
-    ArrayList<HashMap<String, String>> mpCommonsDivisions;
+    //ArrayList<HashMap<String, String>> mpCommonsDivisions;
+    ArrayList<MpVote> mpCommonsDivisions;
 
     public MpCommonsDivisionsVotes(AsyncResponse delegate) {
         this.delegate = delegate;
@@ -62,6 +63,7 @@ public class MpCommonsDivisionsVotes extends AsyncTask<Object, Object, Object> {
                         String _about = item.getString("_about");
                         String[] aboutSplit = _about.split("/");
                         String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + aboutSplit[aboutSplit.length - 1] + ".json";
+                        mpVote.CommonsDivisionsUrl = divisionUrl;
                         jsonStr = sh.makeServiceCall(divisionUrl);
                         jsonObj = new JSONObject(jsonStr);
                         result = jsonObj.getJSONObject("result");
@@ -84,10 +86,12 @@ public class MpCommonsDivisionsVotes extends AsyncTask<Object, Object, Object> {
                                 String[] type = voteItem.getString("type").split("#");
                                 if (type[1].equals(VoteOptions.AyeVote)) {
                                     mpVote.MpVote = VoteOptions.AyeVote;
-                                    addVoteToHashMap(mpVote);
+                                    mpCommonsDivisions.add(mpVote);
+                                    //addVoteToHashMap(mpVote);
                                 } else if (type[1].equals(VoteOptions.NoVote)) {
                                     mpVote.MpVote = VoteOptions.NoVote;
-                                    addVoteToHashMap(mpVote);
+                                    mpCommonsDivisions.add(mpVote);
+                                    //addVoteToHashMap(mpVote);
                                 }
                                 break;
                             }
@@ -102,26 +106,6 @@ public class MpCommonsDivisionsVotes extends AsyncTask<Object, Object, Object> {
         }
         return mpCommonsDivisions;
     }
-
-    private void addVoteToHashMap(MpVote vote) {
-        // tmp hash map for single contact
-        HashMap<String, String> contact = new HashMap<>();
-
-        // TODO: Change HashMap to handle ints
-        String ayeVotes = "Aye Votes: " + Integer.toString(vote.AyeVotes);
-        String noVotes = "No Votes: " + Integer.toString(vote.NoVotes);
-
-        // adding each child node to HashMap key => value
-        contact.put("title", vote.Title);
-        contact.put("date", vote.Date);
-        contact.put("ayes", ayeVotes);
-        contact.put("noes", noVotes);
-        contact.put("mpVote", vote.MpVote);
-
-        // adding contact to contact list
-        mpCommonsDivisions.add(contact);
-    }
-
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);

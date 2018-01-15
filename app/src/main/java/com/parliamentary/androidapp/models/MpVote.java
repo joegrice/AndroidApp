@@ -10,5 +10,6 @@ public class MpVote {
     public int AyeVotes;
     public int NoVotes;
     public String MpVote;
+    public String CommonsDivisionsUrl;
 }
 

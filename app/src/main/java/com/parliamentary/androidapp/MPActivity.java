@@ -7,20 +7,19 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.models.MpParliamentProfile;
+import com.parliamentary.androidapp.models.MpVote;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MPActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,12 +43,20 @@ public class MPActivity extends AppCompatActivity implements View.OnClickListene
         buttonFavouritePage = (Button) findViewById(R.id.buttonFavouritePage);
         buttonProfilePage = (Button) findViewById(R.id.buttonProfilePage);
         mpVotedList = (ListView) findViewById(R.id.mpVotedList);
-        spinner = (ProgressBar)findViewById(R.id.progressBar);
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
 
         buttonListPage.setOnClickListener(this);
         buttonMpPage.setOnClickListener(this);
         buttonFavouritePage.setOnClickListener(this);
         buttonProfilePage.setOnClickListener(this);
+        mpVotedList.setClickable(true);
+        mpVotedList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Object o = mpVotedList.getItemAtPosition(position);
+            }
+        });
 
         GetUserPostCode();
         spinner.setVisibility(View.GONE);
@@ -61,10 +68,10 @@ public class MPActivity extends AppCompatActivity implements View.OnClickListene
 
             @Override
             public void processFinish(Object output) {
-                ListAdapter adapter = new SimpleAdapter(MPActivity.this, (ArrayList<HashMap<String, String>>) output,
-                        R.layout.mpvote_list_item, new String[]{"title", "date", "ayes", "noes", "mpVote"},
-                        new int[]{R.id.text_bill_title, R.id.text_bill_date, R.id.text_bill_ayes, R.id.text_bill_noes, R.id.text_mpvote});
-                mpVotedList.setAdapter(adapter);
+                ArrayList<MpVote> mpVotes = (ArrayList<MpVote>) output;
+                MpVoteAdapter adapter = new MpVoteAdapter(MPActivity.this, mpVotes);
+                ListView listView = mpVotedList;
+                listView.setAdapter(adapter);
                 spinner.setVisibility(View.GONE);
             }
         });
