@@ -29,7 +29,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".MPActivity"></activity>
+        <activity android:name=".MPActivity" />
+        <activity android:name=".CommonsDivisionsActivity"></activity>
     </application>
 
 </manifest>

@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,14 +48,6 @@ public class MPActivity extends AppCompatActivity implements View.OnClickListene
         buttonMpPage.setOnClickListener(this);
         buttonFavouritePage.setOnClickListener(this);
         buttonProfilePage.setOnClickListener(this);
-        mpVotedList.setClickable(true);
-        mpVotedList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Object o = mpVotedList.getItemAtPosition(position);
-            }
-        });
 
         GetUserPostCode();
         spinner.setVisibility(View.GONE);
@@ -64,7 +55,7 @@ public class MPActivity extends AppCompatActivity implements View.OnClickListene
 
     private void GetMPCommonsDivisions() {
         spinner.setVisibility(View.VISIBLE);
-        MpCommonsDivisionsVotes asyncTask = new MpCommonsDivisionsVotes(new AsyncResponse() {
+        GetMpCommonsDivisionsVotesTask asyncTask = new GetMpCommonsDivisionsVotesTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {

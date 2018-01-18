@@ -1,12 +1,14 @@
 package com.parliamentary.androidapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.parliamentary.androidapp.models.MpVote;
 
 import java.util.ArrayList;
@@ -34,7 +36,19 @@ public class MpVoteAdapter extends ArrayAdapter<MpVote> {
             convertView = LayoutInflater.from(context).inflate(R.layout.mpvote_list_item, parent, false);
         }
         // Get the data item for this position
-        MpVote mpVote = mpVoteList.get(position);
+        final MpVote mpVote = mpVoteList.get(position);
+
+        // Attach the click event handler
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CommonsDivisionsActivity.class);
+                Gson gson = new Gson();
+                String mpVoteString = gson.toJson(mpVote);
+                intent.putExtra("mpVoteString", mpVoteString);
+                context.startActivity(intent);
+            }
+        });
 
         // Lookup view for data population
         TextView title = convertView.findViewById(R.id.text_bill_title);

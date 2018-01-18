@@ -30,9 +30,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support:gridlayout-v7:26.0.0-alpha1'
     compile 'org.jsoup:jsoup:1.11.2'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     testCompile 'junit:junit:4.12'
 }
 
-
+repositories {
+    maven { url "https://jitpack.io" }
+}
 
 apply plugin: 'com.google.gms.google-services'

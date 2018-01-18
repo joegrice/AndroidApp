@@ -13,20 +13,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by jg413 on 12/01/2018.
  */
 
-public class MpCommonsDivisionsVotes extends AsyncTask<Object, Object, Object> {
+public class GetMpCommonsDivisionsVotesTask extends AsyncTask<Object, Object, Object> {
 
     private String TAG = MainActivity.class.getSimpleName();
     public AsyncResponse delegate = null;
     //ArrayList<HashMap<String, String>> mpCommonsDivisions;
     ArrayList<MpVote> mpCommonsDivisions;
 
-    public MpCommonsDivisionsVotes(AsyncResponse delegate) {
+    public GetMpCommonsDivisionsVotesTask(AsyncResponse delegate) {
         this.delegate = delegate;
     }
 
