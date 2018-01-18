@@ -1,13 +1,14 @@
 package com.parliamentary.androidapp;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,37 +21,37 @@ import com.parliamentary.androidapp.models.MpVote;
 
 import java.util.ArrayList;
 
-public class MPActivity extends AppCompatActivity implements View.OnClickListener {
+public class MPActivity extends AppCompatActivity {
 
-    private Button buttonListPage;
-    private Button buttonMpPage;
-    private Button buttonFavouritePage;
-    private Button buttonProfilePage;
     private ListView mpVotedList;
     private ProgressBar spinner;
+    private String m_Text = "";
+    private MpParliamentProfile mpParliamentProfile;
+    private BottomNavigationView navigation;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-    String m_Text = "";
-    MpParliamentProfile mpParliamentProfile;
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            NavigationHelper navigationHelper = new NavigationHelper(MPActivity.this);
+            navigationHelper.onBottomNavigationViewClick(item);
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mp);
 
-        buttonListPage = (Button) findViewById(R.id.buttonListPage);
-        buttonMpPage = (Button) findViewById(R.id.buttonMpPage);
-        buttonFavouritePage = (Button) findViewById(R.id.buttonFavouritePage);
-        buttonProfilePage = (Button) findViewById(R.id.buttonProfilePage);
         mpVotedList = (ListView) findViewById(R.id.mpVotedList);
         spinner = (ProgressBar) findViewById(R.id.progressBar);
 
-        buttonListPage.setOnClickListener(this);
-        buttonMpPage.setOnClickListener(this);
-        buttonFavouritePage.setOnClickListener(this);
-        buttonProfilePage.setOnClickListener(this);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.getMenu().getItem(1).setChecked(true);
 
         GetUserPostCode();
-        spinner.setVisibility(View.GONE);
     }
 
     private void GetMPCommonsDivisions() {
@@ -111,17 +112,5 @@ public class MPActivity extends AppCompatActivity implements View.OnClickListene
         });
 
         builder.show();
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.buttonProfilePage:
-                startActivity(new Intent(this, ProfileActivity.class));
-                break;
-            case R.id.buttonListPage:
-                startActivity(new Intent(this, MainActivity.class));
-                break;
-        }
     }
 }

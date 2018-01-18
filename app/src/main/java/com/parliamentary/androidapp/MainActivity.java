@@ -1,12 +1,12 @@
 package com.parliamentary.androidapp;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -19,16 +19,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
-    private Button buttonListPage;
-    private Button buttonMpPage;
-    private Button buttonFavouritePage;
-    private Button buttonProfilePage;
+    private ArrayList<HashMap<String, String>> contactList;
+    private BottomNavigationView navigation;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-    ArrayList<HashMap<String, String>> contactList;
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            NavigationHelper navigationHelper = new NavigationHelper(MainActivity.this);
+            navigationHelper.onBottomNavigationViewClick(item);
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,30 +43,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         contactList = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
-
-        buttonListPage = (Button) findViewById(R.id.buttonListPage);
-        buttonMpPage = (Button) findViewById(R.id.buttonMpPage);
-        buttonFavouritePage = (Button) findViewById(R.id.buttonFavouritePage);
-        buttonProfilePage = (Button) findViewById(R.id.buttonProfilePage);
-
-        buttonListPage.setOnClickListener(this);
-        buttonMpPage.setOnClickListener(this);
-        buttonFavouritePage.setOnClickListener(this);
-        buttonProfilePage.setOnClickListener(this);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.getMenu().getItem(0).setChecked(true);
 
         new GetContacts().execute();
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.buttonProfilePage:
-                startActivity(new Intent(this, ProfileActivity.class));
-                break;
-            case R.id.buttonMpPage:
-                startActivity(new Intent(this, MPActivity.class));
-                break;
-        }
     }
 
     private class GetContacts extends AsyncTask<Void, Void, Void> {

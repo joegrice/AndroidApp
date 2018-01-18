@@ -30,7 +30,10 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
         <activity android:name=".MPActivity" />
-        <activity android:name=".CommonsDivisionsActivity"></activity>
+        <activity android:name=".CommonsDivisionsActivity" />
+        <activity
+            android:name=".FavouriteActivity"
+            android:label="@string/title_activity_favourite"></activity>
     </application>
 
 </manifest>
