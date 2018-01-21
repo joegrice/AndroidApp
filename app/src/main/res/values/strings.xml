@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_profile">User Profile</string>
     <string name="title_activity_login">Login User</string>
     <string name="title_activity_register">Register User</string>
     <string name="title_activity_main">Divisions List</string>
@@ -11,5 +11,5 @@
     <string name="title_list">List</string>
     <string name="title_favourite">Favourite</string>
     <string name="title_profile">Profile</string>
-    <string name="title_activity_favourite">FavouriteActivity</string>
+    <string name="title_activity_favourite">User Favourites</string>
 </resources>

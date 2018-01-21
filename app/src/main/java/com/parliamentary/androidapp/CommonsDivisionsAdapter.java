@@ -18,12 +18,12 @@ import java.util.List;
  * Created by jg413 on 13/01/2018.
  */
 
-public class MpVoteAdapter extends ArrayAdapter<CommonsDivision> {
+public class CommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
 
     private Context context;
     private List<CommonsDivision> commonsDivisions = new ArrayList<>();
 
-    public MpVoteAdapter(Context context, ArrayList<CommonsDivision> commonsDivisions) {
+    public CommonsDivisionsAdapter(Context context, ArrayList<CommonsDivision> commonsDivisions) {
         super(context, 0, commonsDivisions);
         this.context = context;
         this.commonsDivisions = commonsDivisions;
@@ -33,7 +33,7 @@ public class MpVoteAdapter extends ArrayAdapter<CommonsDivision> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.mpvote_list_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
         }
         // Get the data item for this position
         final CommonsDivision commonsDivision = commonsDivisions.get(position);
@@ -51,13 +51,12 @@ public class MpVoteAdapter extends ArrayAdapter<CommonsDivision> {
         });
 
         // Lookup view for data population
-        TextView title = convertView.findViewById(R.id.text_bill_title);
-        TextView date = convertView.findViewById(R.id.text_bill_date);
-        TextView ayes = convertView.findViewById(R.id.text_bill_ayes);
-        TextView noes = convertView.findViewById(R.id.text_bill_noes);
-        TextView mpVoteOutcome = convertView.findViewById(R.id.text_mpvote);
+        TextView title = convertView.findViewById(R.id.bill_title);
+        TextView date = convertView.findViewById(R.id.bill_date);
+        TextView ayes = convertView.findViewById(R.id.vote_ayes);
+        TextView noes = convertView.findViewById(R.id.vote_noes);
 
-        // TODO: Change HashMap to handle ints
+        // Add Vote Titles
         String ayeVotes = "Aye Votes: " + Integer.toString(commonsDivision.AyeVotes);
         String noVotes = "No Votes: " + Integer.toString(commonsDivision.NoVotes);
 
@@ -66,7 +65,6 @@ public class MpVoteAdapter extends ArrayAdapter<CommonsDivision> {
         date.setText(commonsDivision.Date);
         ayes.setText(ayeVotes);
         noes.setText(noVotes);
-        mpVoteOutcome.setText(commonsDivision.MpVote);
 
         // Return the completed view to render on screen
         return convertView;

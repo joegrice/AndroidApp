@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.parliamentary.androidapp.MPActivity">
+    tools:context="com.parliamentary.androidapp.MpActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -52,11 +52,12 @@
     <ListView
         android:id="@+id/mpVotedList"
         android:layout_width="match_parent"
-        android:layout_height="415dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:filterTouchesWhenObscured="false" />
+        android:filterTouchesWhenObscured="false"
+        android:layout_above="@id/navigation"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

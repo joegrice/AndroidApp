@@ -16,16 +16,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.parliamentary.androidapp.data.AsyncResponse;
+import com.parliamentary.androidapp.models.CommonsDivision;
 import com.parliamentary.androidapp.models.MpParliamentProfile;
-import com.parliamentary.androidapp.models.MpVote;
 
 import java.util.ArrayList;
 
-public class MPActivity extends AppCompatActivity {
+public class MpActivity extends AppCompatActivity {
 
     private ListView mpVotedList;
     private ProgressBar spinner;
-    private String m_Text = "";
+    private String postcode = "";
     private MpParliamentProfile mpParliamentProfile;
     private BottomNavigationView navigation;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -33,7 +33,7 @@ public class MPActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            NavigationHelper navigationHelper = new NavigationHelper(MPActivity.this);
+            NavigationHelper navigationHelper = new NavigationHelper(MpActivity.this);
             navigationHelper.onBottomNavigationViewClick(item);
             return false;
         }
@@ -51,17 +51,17 @@ public class MPActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(1).setChecked(true);
 
-        GetUserPostCode();
+        getUserPostCode();
     }
 
-    private void GetMPCommonsDivisions() {
+    private void getMPCommonsDivisions() {
         spinner.setVisibility(View.VISIBLE);
-        GetMpCommonsDivisionsVotesTask asyncTask = new GetMpCommonsDivisionsVotesTask(new AsyncResponse() {
+        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
-                ArrayList<MpVote> mpVotes = (ArrayList<MpVote>) output;
-                MpVoteAdapter adapter = new MpVoteAdapter(MPActivity.this, mpVotes);
+                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
+                MpVoteAdapter adapter = new MpVoteAdapter(MpActivity.this, commonsDivisions);
                 ListView listView = mpVotedList;
                 listView.setAdapter(adapter);
                 spinner.setVisibility(View.GONE);
@@ -70,7 +70,7 @@ public class MPActivity extends AppCompatActivity {
         asyncTask.execute(mpParliamentProfile);
     }
 
-    private void GetNewMP() {
+    private void getNewMP() {
         spinner.setVisibility(View.VISIBLE);
         MpNameJsoup asyncTask = new MpNameJsoup(new AsyncResponse() {
 
@@ -83,13 +83,13 @@ public class MPActivity extends AppCompatActivity {
                 new DownloadImageTask((ImageView) findViewById(R.id.image_member))
                         .execute(mpParliamentProfile.MemberImg);
                 spinner.setVisibility(View.GONE);
-                GetMPCommonsDivisions();
+                getMPCommonsDivisions();
             }
         });
-        asyncTask.execute(m_Text);
+        asyncTask.execute(postcode);
     }
 
-    private void GetUserPostCode() {
+    private void getUserPostCode() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter your postcode:");
 
@@ -100,8 +100,8 @@ public class MPActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                m_Text = input.getText().toString();
-                GetNewMP();
+                postcode = input.getText().toString();
+                getNewMP();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -29,7 +29,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".MPActivity" />
+        <activity android:name=".MpActivity" />
         <activity android:name=".CommonsDivisionsActivity" />
         <activity
             android:name=".FavouriteActivity"

@@ -2,8 +2,6 @@ package com.parliamentary.androidapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.BottomNavigationView;
-import android.view.Menu;
 import android.view.MenuItem;
 
 /**
@@ -27,7 +25,7 @@ public class NavigationHelper {
                 context.startActivity(new Intent(context, MainActivity.class));
                 break;
             case R.id.navigation_mp:
-                context.startActivity(new Intent(context, MPActivity.class));
+                context.startActivity(new Intent(context, MpActivity.class));
                 break;
             case R.id.navigation_favourite:
                 context.startActivity(new Intent(context, FavouriteActivity.class));

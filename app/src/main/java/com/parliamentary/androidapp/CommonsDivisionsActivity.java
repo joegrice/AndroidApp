@@ -14,18 +14,13 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
-import com.parliamentary.androidapp.data.AsyncResponse;
-import com.parliamentary.androidapp.models.CommonsDivisionsInformation;
-import com.parliamentary.androidapp.models.MpVote;
+import com.parliamentary.androidapp.models.CommonsDivision;
 import com.parliamentary.androidapp.models.PartyVoteDetail;
-import com.parliamentary.androidapp.models.Vote;
 
 import java.util.ArrayList;
 
 public class CommonsDivisionsActivity extends AppCompatActivity {
 
-    Vote vote;
-    CommonsDivisionsInformation commonsDivisionsInformation;
     private ProgressBar spinner;
 
     @Override
@@ -34,24 +29,37 @@ public class CommonsDivisionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commons_divisions);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        spinner = (ProgressBar) findViewById(R.id.cdProgressBar);
-        Intent intent = getIntent();
-        String mpVoteString = intent.getStringExtra("mpVoteString");
-        Gson gson = new Gson();
-        vote = gson.fromJson(mpVoteString, MpVote.class);
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
         displayData();
     }
 
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }
 
-    public void SetUpAyePieChart() {
+    private void displayData() {
+        spinner.setVisibility(View.VISIBLE);
+        CommonsDivision commonsDivision = getCommonsDivision();
+        TextView title = (TextView) findViewById(R.id.text_cd_title);
+        title.setText(commonsDivision.Title);
+        setUpAyePieChart(commonsDivision);
+        setUpNoPieChart(commonsDivision);
+        spinner.setVisibility(View.GONE);
+    }
+
+    private CommonsDivision getCommonsDivision() {
+        Intent intent = getIntent();
+        String commonsDivisionString = intent.getStringExtra("commonsDivisionString");
+        Gson gson = new Gson();
+        CommonsDivision commonsDivision = gson.fromJson(commonsDivisionString, CommonsDivision.class);
+        return commonsDivision;
+    }
+
+    public void setUpAyePieChart(CommonsDivision commonsDivision) {
         PieChart pieChart = (PieChart) findViewById(R.id.ayePieChart);
-        ArrayList<PieEntry> ayePieEntries = new ArrayList<>();
-        AddAyeValues(ayePieEntries);
+        ArrayList<PieEntry> ayePieEntries = getAyeValues(commonsDivision);
         PieDataSet pieDataSet = new PieDataSet(ayePieEntries, "");
         PieData pieData = new PieData(pieDataSet);
         pieChart.setCenterText("Breakdown of Aye Votes");
@@ -70,10 +78,9 @@ public class CommonsDivisionsActivity extends AppCompatActivity {
         pieChart.setVisibility(View.VISIBLE);
     }
 
-    public void SetUpNoPieChart() {
+    public void setUpNoPieChart(CommonsDivision commonsDivision) {
         PieChart pieChart = (PieChart) findViewById(R.id.noPieChart);
-        ArrayList<PieEntry> noPieEntries = new ArrayList<>();
-        AddNoValues(noPieEntries);
+        ArrayList<PieEntry> noPieEntries = getNoValues(commonsDivision);
         PieDataSet pieDataSet = new PieDataSet(noPieEntries, "");
         PieData pieData = new PieData(pieDataSet);
         pieChart.setCenterText("Breakdown of No Votes");
@@ -92,34 +99,21 @@ public class CommonsDivisionsActivity extends AppCompatActivity {
         pieChart.setVisibility(View.VISIBLE);
     }
 
-    public void AddAyeValues(ArrayList<PieEntry> ayePieEntries){
-        for (PartyVoteDetail partyVoteDetail: commonsDivisionsInformation.partyVoteDetails) {
+    public ArrayList<PieEntry> getAyeValues(CommonsDivision commonsDivision) {
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        for (PartyVoteDetail partyVoteDetail : commonsDivision.partyVoteDetails) {
             PieEntry pieEntry = new PieEntry((float) partyVoteDetail.AyeVotes, partyVoteDetail.Name);
-            ayePieEntries.add(pieEntry);
+            pieEntries.add(pieEntry);
         }
+        return pieEntries;
     }
 
-    public void AddNoValues(ArrayList<PieEntry> noPieEntries){
-        for (PartyVoteDetail partyVoteDetail: commonsDivisionsInformation.partyVoteDetails) {
+    public ArrayList<PieEntry> getNoValues(CommonsDivision commonsDivision) {
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        for (PartyVoteDetail partyVoteDetail : commonsDivision.partyVoteDetails) {
             PieEntry pieEntry = new PieEntry((float) partyVoteDetail.NoVotes, partyVoteDetail.Name);
-            noPieEntries.add(pieEntry);
+            pieEntries.add(pieEntry);
         }
-    }
-
-    private void displayData() {
-        TextView title = (TextView) findViewById(R.id.text_cd_title);
-        title.setText(vote.Title);
-
-        MpCommonsDivisionsVote asyncTask = new MpCommonsDivisionsVote(new AsyncResponse() {
-
-            @Override
-            public void processFinish(Object output) {
-                commonsDivisionsInformation = (CommonsDivisionsInformation) output;
-                SetUpAyePieChart();
-                SetUpNoPieChart();
-                spinner.setVisibility(View.GONE);
-            }
-        });
-        asyncTask.execute(vote);
+        return pieEntries;
     }
 }

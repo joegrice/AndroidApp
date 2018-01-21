@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.parliamentary.androidapp.MainActivity"
-    android:weightSum="1">
+    tools:context="com.parliamentary.androidapp.MainActivity" >
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/mainListView"
         android:layout_width="match_parent"
-        android:layout_height="530dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:filterTouchesWhenObscured="false"
-        android:layout_weight="0.48" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation"
+        android:layout_centerInParent="true"
+        android:filterTouchesWhenObscured="false" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation_custom" />
+        app:menu="@menu/navigation_custom"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true" />
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
