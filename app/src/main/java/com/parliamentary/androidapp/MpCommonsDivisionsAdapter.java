@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.parliamentary.androidapp.models.CommonsDivision;
@@ -29,14 +30,14 @@ import java.util.Map;
  * Created by jg413 on 13/01/2018.
  */
 
-public class CommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
+public class MpCommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
 
     private Context context;
     private String TAG;
     private List<CommonsDivision> commonsDivisions = new ArrayList<>();
     private FirebaseAuth firebaseAuth;
 
-    public CommonsDivisionsAdapter(Context context, FirebaseAuth firebaseAuth, ArrayList<CommonsDivision> commonsDivisions) {
+    public MpCommonsDivisionsAdapter(Context context, FirebaseAuth firebaseAuth, ArrayList<CommonsDivision> commonsDivisions) {
         super(context, 0, commonsDivisions);
         this.context = context;
         this.firebaseAuth = firebaseAuth;
@@ -48,7 +49,7 @@ public class CommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.mp_list_item, parent, false);
         }
         // Get the data item for this position
         final CommonsDivision commonsDivision = commonsDivisions.get(position);
@@ -66,14 +67,15 @@ public class CommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
         });
 
         // Lookup view for data population
-        TextView title = convertView.findViewById(R.id.bill_title);
-        TextView date = convertView.findViewById(R.id.bill_date);
-        TextView ayes = convertView.findViewById(R.id.vote_ayes);
-        TextView noes = convertView.findViewById(R.id.vote_noes);
-        ImageView favourite = convertView.findViewById(R.id.imageView_favourite_list);
+        TextView title = convertView.findViewById(R.id.text_bill_title);
+        TextView date = convertView.findViewById(R.id.text_bill_date);
+        TextView ayes = convertView.findViewById(R.id.text_bill_ayes);
+        TextView noes = convertView.findViewById(R.id.text_bill_noes);
+        TextView mpVoteOutcome = convertView.findViewById(R.id.text_mpvote);
+        ImageView favourite = convertView.findViewById(R.id.imageView_favourite);
 
         // Attach the click event handler
-        convertView.findViewById(R.id.imageView_favourite_list).setOnClickListener(new View.OnClickListener() {
+        convertView.findViewById(R.id.imageView_favourite).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -109,7 +111,7 @@ public class CommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
             }
         });
 
-        // Add Vote Titles
+        // TODO: Change HashMap to handle ints
         String ayeVotes = "Aye Votes: " + Integer.toString(commonsDivision.AyeVotes);
         String noVotes = "No Votes: " + Integer.toString(commonsDivision.NoVotes);
 
@@ -118,6 +120,7 @@ public class CommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
         date.setText(commonsDivision.Date);
         ayes.setText(ayeVotes);
         noes.setText(noVotes);
+        mpVoteOutcome.setText(commonsDivision.MpVote);
         if (commonsDivision.Favourite) {
             favourite.setImageResource(R.drawable.ic_favorite_black_24dp);
         } else {

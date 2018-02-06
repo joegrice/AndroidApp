@@ -13,6 +13,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by jg413 on 12/01/2018.
@@ -37,11 +39,12 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
         HttpHandler sh = new HttpHandler();
         ArrayList<CommonsDivision> commonsDivisions = new ArrayList<>();
         int pageNumber = (int) objects[0];
+        HashMap<String, Long> favourites = (HashMap<String, Long>) objects[1];
 
         String url = "http://lda.data.parliament.uk/commonsdivisions.json?_view=Commons+Divisions&_pageSize=10&_page=" + pageNumber;
         String jsonStr = sh.makeServiceCall(url);
 
-        Log.e(TAG, "Response from url: " + jsonStr);
+        Log.e(TAG, "Result Page: " + pageNumber);
         if (jsonStr != null) {
             try {
                 JSONObject jsonObj = new JSONObject(jsonStr);
@@ -54,7 +57,7 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
                     String[] aboutSplit = _about.split("/");
                     String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + aboutSplit[aboutSplit.length - 1] + ".json";
                     jsonStr = sh.makeServiceCall(divisionUrl);
-                    CommonsDivision commonsDivision = createCommonsDivision(jsonStr);
+                    CommonsDivision commonsDivision = createCommonsDivision(jsonStr, favourites);
                     commonsDivisions.add(commonsDivision);
                 }
             } catch (final JSONException e) {
@@ -67,11 +70,17 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
         return commonsDivisions;
     }
 
-    private CommonsDivision createCommonsDivision(String jsonStr) throws JSONException {
+    private CommonsDivision createCommonsDivision(String jsonStr, HashMap<String, Long> favourites) throws JSONException {
         CommonsDivision commonsDivision = new CommonsDivision();
         JSONObject jsonObj = new JSONObject(jsonStr);
         JSONObject result = jsonObj.getJSONObject("result");
         JSONObject primaryTopic = result.getJSONObject("primaryTopic");
+        String _about = primaryTopic.getString("_about");
+        String[] aboutSplit = _about.split("/");
+        String id = aboutSplit[aboutSplit.length - 1];
+        Long idLong = Long.parseLong(id);
+        commonsDivision.Id = idLong;
+        commonsDivision.Favourite = isFavourite(id, favourites);
         String url = primaryTopic.getString("isPrimaryTopicOf");
         commonsDivision.Url = url;
         String title = primaryTopic.getString("title");
@@ -84,6 +93,17 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
         JSONArray vote = primaryTopic.getJSONArray("vote");
         updatePartyDetails(commonsDivision, vote);
         return commonsDivision;
+    }
+
+    private boolean isFavourite(String id, HashMap <String, Long>  favourites) {
+        boolean favourite = false;
+        for (Map.Entry<String, Long> entry : favourites.entrySet()) {
+            if (Long.parseLong(id) == entry.getValue()) {
+                favourite = true;
+                break;
+            }
+        }
+        return favourite;
     }
 
     private void updateAyeVoteCount(CommonsDivision commonsDivision, JSONObject primaryTopic) throws JSONException {

@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.models.CommonsDivision;
@@ -26,9 +27,7 @@ import java.util.HashMap;
 
 public class FavouriteActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private FirebaseAuth firebaseAuth;
     private ProgressBar spinner;
     private String TAG = FavouriteActivity.class.getSimpleName();
     private BottomNavigationView navigation;
@@ -48,34 +47,31 @@ public class FavouriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite);
 
-        mAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        if (mAuth.getCurrentUser() == null) {
+        if (firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-
-        final FirebaseUser user = mAuth.getCurrentUser();
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("database").child("users");
-
         spinner = (ProgressBar) findViewById(R.id.progressBar);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(2).setChecked(true);
 
+        getFavourites();
+    }
+    private void getFavourites() {
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
+
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    Log.w(TAG, data.toString());
-                    if (data.getKey().equals(user.getUid())) {
-                        Iterable<DataSnapshot> dataSnapshotIterator = data.getChildren();
-                        HashMap<String, Long> favourites = (HashMap<String, Long>) dataSnapshotIterator.iterator().next().getValue();
-                        getCommonsDivisions(favourites);
-                    }
-                }
+                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {};
+                HashMap<String, Long> favourites = dataSnapshot.getValue(genericTypeIndicator);
+                getCommonsDivisions(favourites);
             }
 
             @Override
@@ -86,6 +82,7 @@ public class FavouriteActivity extends AppCompatActivity {
         });
     }
 
+
     private void getCommonsDivisions(HashMap<String, Long> favourites) {
         spinner.setVisibility(View.VISIBLE);
         GetListFavouriteCommonsDivisionsTask asyncTask = new GetListFavouriteCommonsDivisionsTask(new AsyncResponse() {
@@ -93,7 +90,7 @@ public class FavouriteActivity extends AppCompatActivity {
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, commonsDivisions);
+                CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, firebaseAuth, commonsDivisions);
                 ListView listView = (ListView) findViewById(R.id.favouritesListView);
                 listView.setAdapter(adapter);
                 spinner.setVisibility(View.GONE);

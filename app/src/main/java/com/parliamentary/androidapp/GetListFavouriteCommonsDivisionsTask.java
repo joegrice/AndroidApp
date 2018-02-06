@@ -46,7 +46,7 @@ public class GetListFavouriteCommonsDivisionsTask extends AsyncTask<Object, Obje
 
             if (jsonStr != null) {
                 try {
-                    CommonsDivision commonsDivision = createCommonsDivision(jsonStr);
+                    CommonsDivision commonsDivision = createCommonsDivision(jsonStr, favourites);
                     commonsDivisions.add(commonsDivision);
                 } catch (final JSONException e) {
                     e.printStackTrace();
@@ -59,11 +59,17 @@ public class GetListFavouriteCommonsDivisionsTask extends AsyncTask<Object, Obje
         return commonsDivisions;
     }
 
-    private CommonsDivision createCommonsDivision(String jsonStr) throws JSONException {
+    private CommonsDivision createCommonsDivision(String jsonStr, HashMap<String, Long> favourites) throws JSONException {
         CommonsDivision commonsDivision = new CommonsDivision();
         JSONObject jsonObj = new JSONObject(jsonStr);
         JSONObject result = jsonObj.getJSONObject("result");
         JSONObject primaryTopic = result.getJSONObject("primaryTopic");
+        String _about = primaryTopic.getString("_about");
+        String[] aboutSplit = _about.split("/");
+        String id = aboutSplit[aboutSplit.length - 1];
+        Long idLong = Long.parseLong(id);
+        commonsDivision.Id = idLong;
+        commonsDivision.Favourite = isFavourite(id, favourites);
         String title = primaryTopic.getString("title");
         commonsDivision.Title = title;
         JSONObject dateObj = primaryTopic.getJSONObject("date");
@@ -74,6 +80,17 @@ public class GetListFavouriteCommonsDivisionsTask extends AsyncTask<Object, Obje
         JSONArray vote = primaryTopic.getJSONArray("vote");
         updatePartyDetails(commonsDivision, vote);
         return commonsDivision;
+    }
+
+    private boolean isFavourite(String id, HashMap <String, Long>  favourites) {
+        boolean favourite = false;
+        for (Map.Entry<String, Long> entry : favourites.entrySet()) {
+            if (Long.parseLong(id) == entry.getValue()) {
+                favourite = true;
+                break;
+            }
+        }
+        return favourite;
     }
 
     private void updateAyeVoteCount(CommonsDivision commonsDivision, JSONObject primaryTopic) throws JSONException {

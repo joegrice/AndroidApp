@@ -12,6 +12,8 @@ public class CommonsDivision {
     public int AyeVotes;
     public int NoVotes;
     public String Url;
+    public Long Id;
     public String MpVote;
     public ArrayList<PartyVoteDetail> partyVoteDetails;
+    public boolean Favourite;
 }

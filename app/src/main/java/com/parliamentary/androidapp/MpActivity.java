@@ -1,12 +1,14 @@
 package com.parliamentary.androidapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -15,14 +17,28 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FacebookAuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.models.CommonsDivision;
+import com.parliamentary.androidapp.models.FavouriteCommonDivision;
 import com.parliamentary.androidapp.models.MpParliamentProfile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MpActivity extends AppCompatActivity {
 
+    private String TAG = MpActivity.class.getSimpleName();
+    private FirebaseAuth firebaseAuth;
     private ListView mpVotedList;
     private ProgressBar spinner;
     private String postcode = "";
@@ -44,6 +60,12 @@ public class MpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mp);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() == null) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
         mpVotedList = (ListView) findViewById(R.id.mpVotedList);
         spinner = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -54,20 +76,42 @@ public class MpActivity extends AppCompatActivity {
         getUserPostCode();
     }
 
-    private void getMPCommonsDivisions() {
+    private void getFavourites() {
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
+
+        // Read from the database
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {};
+                HashMap<String, Long> favourites = dataSnapshot.getValue(genericTypeIndicator);
+                getMPCommonsDivisions(favourites);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    private void getMPCommonsDivisions(HashMap<String, Long> favourites) {
         spinner.setVisibility(View.VISIBLE);
         GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                MpVoteAdapter adapter = new MpVoteAdapter(MpActivity.this, commonsDivisions);
+                MpCommonsDivisionsAdapter adapter = new MpCommonsDivisionsAdapter(MpActivity.this, firebaseAuth, commonsDivisions);
                 ListView listView = mpVotedList;
                 listView.setAdapter(adapter);
                 spinner.setVisibility(View.GONE);
             }
         });
-        asyncTask.execute(mpParliamentProfile);
+        asyncTask.execute(mpParliamentProfile, favourites);
     }
 
     private void getNewMP() {
@@ -83,7 +127,7 @@ public class MpActivity extends AppCompatActivity {
                 new DownloadImageTask((ImageView) findViewById(R.id.image_member))
                         .execute(mpParliamentProfile.MemberImg);
                 spinner.setVisibility(View.GONE);
-                getMPCommonsDivisions();
+                getFavourites();
             }
         });
         asyncTask.execute(postcode);
