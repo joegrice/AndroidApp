@@ -41,37 +41,36 @@ public class GetListMpCommonsDivisionsTask extends AsyncTask<Object, Object, Obj
         HttpHandler sh = new HttpHandler();
         ArrayList<CommonsDivision> commonsDivisions = new ArrayList<>();
         mpParliamentProfile = (MpParliamentProfile) objects[0];
-        HashMap <String, Long> favourites = (HashMap <String, Long> ) objects[1];
+        HashMap<String, Long> favourites = (HashMap<String, Long>) objects[1];
+        int pageNumber = (int) objects[2];
 
-        for (int pageNumber = 0; pageNumber < 5; pageNumber++) {
-            String url = "http://lda.data.parliament.uk/commonsdivisions.json?_view=Commons+Divisions&_pageSize=10&_page=" + pageNumber;
-            String jsonStr = sh.makeServiceCall(url);
+        String url = "http://lda.data.parliament.uk/commonsdivisions.json?_view=Commons+Divisions&_pageSize=10&_page=" + pageNumber;
+        String jsonStr = sh.makeServiceCall(url);
 
-            Log.e(TAG, "Result Page: " + pageNumber);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-                    JSONObject result = jsonObj.getJSONObject("result");
-                    JSONArray items = result.getJSONArray("items");
+        Log.e(TAG, "Result Page: " + pageNumber);
+        if (jsonStr != null) {
+            try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                JSONObject result = jsonObj.getJSONObject("result");
+                JSONArray items = result.getJSONArray("items");
 
-                    for (int i = 0; i < items.length(); i++) {
-                        JSONObject item = items.getJSONObject(i);
+                for (int i = 0; i < items.length(); i++) {
+                    JSONObject item = items.getJSONObject(i);
 
-                        CommonsDivision commonsDivision = createCommonsDivision(item, favourites);
-                        commonsDivisions.add(commonsDivision);
-                    }
-                } catch (final JSONException e) {
-                    e.printStackTrace();
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
+                    CommonsDivision commonsDivision = createCommonsDivision(item, favourites);
+                    commonsDivisions.add(commonsDivision);
                 }
-            } else {
-                Log.e(TAG, "Couldn't get json from server.");
+            } catch (final JSONException e) {
+                e.printStackTrace();
+                Log.e(TAG, "Json parsing error: " + e.getMessage());
             }
+        } else {
+            Log.e(TAG, "Couldn't get json from server.");
         }
         return commonsDivisions;
     }
 
-    private CommonsDivision createCommonsDivision(JSONObject item, HashMap <String, Long> favourites) throws JSONException {
+    private CommonsDivision createCommonsDivision(JSONObject item, HashMap<String, Long> favourites) throws JSONException {
         HttpHandler sh = new HttpHandler();
         CommonsDivision commonsDivision = new CommonsDivision();
         String _about = item.getString("_about");
@@ -99,7 +98,7 @@ public class GetListMpCommonsDivisionsTask extends AsyncTask<Object, Object, Obj
         return commonsDivision;
     }
 
-    private boolean isFavourite(String id, HashMap <String, Long>  favourites) {
+    private boolean isFavourite(String id, HashMap<String, Long> favourites) {
         boolean favourite = false;
         for (Map.Entry<String, Long> entry : favourites.entrySet()) {
             if (Long.parseLong(id) == entry.getValue()) {

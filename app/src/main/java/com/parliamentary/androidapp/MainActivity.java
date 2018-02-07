@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressBar spinner;
     private int pageNumber = 0;
+    private HashMap<String, Long> favourites;
+    private CommonsDivisionsAdapter adapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private BottomNavigationView navigation;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -58,7 +62,21 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(0).setChecked(true);
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshContent();
+            }
+        });
+
         getFavourites();
+    }
+
+    private void refreshContent() {
+        pageNumber++;
+        addListCommonsDivisions();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     private void getFavourites() {
@@ -70,9 +88,10 @@ public class MainActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {};
-                HashMap<String, Long> favourites = dataSnapshot.getValue(genericTypeIndicator);
-                getListCommonsDivisions(favourites);
+                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {
+                };
+                favourites = dataSnapshot.getValue(genericTypeIndicator);
+                getListCommonsDivisions();
             }
 
             @Override
@@ -83,14 +102,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getListCommonsDivisions(HashMap<String, Long> favourites) {
+    private void getListCommonsDivisions() {
         spinner.setVisibility(View.VISIBLE);
         GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(MainActivity.this, firebaseAuth, commonsDivisions);
+                adapter = new CommonsDivisionsAdapter(MainActivity.this, firebaseAuth, commonsDivisions);
                 ListView listView = (ListView) findViewById(R.id.mainListView);
                 listView.setAdapter(adapter);
                 spinner.setVisibility(View.GONE);
@@ -98,4 +117,19 @@ public class MainActivity extends AppCompatActivity {
         });
         asyncTask.execute(pageNumber, favourites);
     }
+
+    private void addListCommonsDivisions() {
+        spinner.setVisibility(View.VISIBLE);
+        GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(new AsyncResponse() {
+
+            @Override
+            public void processFinish(Object output) {
+                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
+                adapter.addAll(commonsDivisions);
+                spinner.setVisibility(View.GONE);
+            }
+        });
+        asyncTask.execute(pageNumber, favourites);
+    }
+
 }

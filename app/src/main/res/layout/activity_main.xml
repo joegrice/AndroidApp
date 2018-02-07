@@ -5,24 +5,31 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.parliamentary.androidapp.MainActivity" >
+    tools:context="com.parliamentary.androidapp.MainActivity">
 
-    <ListView
-        android:id="@+id/mainListView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/activity_main_swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/navigation"
-        android:layout_centerInParent="true"
-        android:filterTouchesWhenObscured="false" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navigation">
+
+        <ListView
+            android:id="@+id/mainListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:filterTouchesWhenObscured="false" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation_custom"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true" />
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navigation_custom" />
 
     <ProgressBar
         android:id="@+id/progressBar"

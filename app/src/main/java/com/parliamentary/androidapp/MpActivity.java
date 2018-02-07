@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -42,6 +43,10 @@ public class MpActivity extends AppCompatActivity {
     private ListView mpVotedList;
     private ProgressBar spinner;
     private String postcode = "";
+    private int pageNumber = 0;
+    private MpCommonsDivisionsAdapter adapter;
+    private HashMap<String, Long> favourites;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private MpParliamentProfile mpParliamentProfile;
     private BottomNavigationView navigation;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -73,7 +78,21 @@ public class MpActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(1).setChecked(true);
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_mp_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshContent();
+            }
+        });
+
         getUserPostCode();
+    }
+
+    private void refreshContent() {
+        pageNumber++;
+        addMPCommonsDivisions();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     private void getFavourites() {
@@ -86,8 +105,8 @@ public class MpActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {};
-                HashMap<String, Long> favourites = dataSnapshot.getValue(genericTypeIndicator);
-                getMPCommonsDivisions(favourites);
+                favourites = dataSnapshot.getValue(genericTypeIndicator);
+                getMPCommonsDivisions();
             }
 
             @Override
@@ -98,20 +117,34 @@ public class MpActivity extends AppCompatActivity {
         });
     }
 
-    private void getMPCommonsDivisions(HashMap<String, Long> favourites) {
+    private void addMPCommonsDivisions() {
         spinner.setVisibility(View.VISIBLE);
         GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                MpCommonsDivisionsAdapter adapter = new MpCommonsDivisionsAdapter(MpActivity.this, firebaseAuth, commonsDivisions);
+                adapter.addAll(commonsDivisions);
+                spinner.setVisibility(View.GONE);
+            }
+        });
+        asyncTask.execute(mpParliamentProfile, favourites, pageNumber);
+    }
+
+    private void getMPCommonsDivisions() {
+        spinner.setVisibility(View.VISIBLE);
+        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(new AsyncResponse() {
+
+            @Override
+            public void processFinish(Object output) {
+                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
+                adapter = new MpCommonsDivisionsAdapter(MpActivity.this, firebaseAuth, commonsDivisions);
                 ListView listView = mpVotedList;
                 listView.setAdapter(adapter);
                 spinner.setVisibility(View.GONE);
             }
         });
-        asyncTask.execute(mpParliamentProfile, favourites);
+        asyncTask.execute(mpParliamentProfile, favourites, pageNumber);
     }
 
     private void getNewMP() {

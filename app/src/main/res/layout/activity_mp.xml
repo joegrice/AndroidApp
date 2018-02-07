@@ -49,15 +49,23 @@
 
     </LinearLayout>
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/activity_mp_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navigation"
+        android:layout_below="@+id/linearLayout2" >
+
     <ListView
         android:id="@+id/mpVotedList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:filterTouchesWhenObscured="false"
         android:layout_above="@id/navigation"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
