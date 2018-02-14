@@ -86,7 +86,11 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {
                 };
-                favourites = dataSnapshot.getValue(genericTypeIndicator);
+                if (dataSnapshot.getValue(genericTypeIndicator) == null) {
+                    favourites = new HashMap<>();
+                } else {
+                    favourites = dataSnapshot.getValue(genericTypeIndicator);
+                }
                 getListCommonsDivisions();
             }
 

@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.parliamentary.androidapp.CommonsDivisionsActivity;
 import com.parliamentary.androidapp.R;
+import com.parliamentary.androidapp.helpers.FavouriteOnClickListener;
 import com.parliamentary.androidapp.models.CommonsDivision;
 
 import java.util.ArrayList;
@@ -72,46 +73,11 @@ public class CommonsDivisionsAdapter extends ArrayAdapter<CommonsDivision> {
         TextView date = convertView.findViewById(R.id.bill_date);
         TextView ayes = convertView.findViewById(R.id.vote_ayes);
         TextView noes = convertView.findViewById(R.id.vote_noes);
-        ImageView favourite = convertView.findViewById(R.id.imageView_favourite_list);
+        final ImageView favourite = convertView.findViewById(R.id.imageView_favourite_list);
 
         // Attach the click event handler
-        convertView.findViewById(R.id.imageView_favourite_list).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final FirebaseUser user = firebaseAuth.getCurrentUser();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                final DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
-
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (commonsDivision.Favourite) {
-                            for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                Long dataValue = data.getValue(Long.class);
-                                if (dataValue.equals(commonsDivision.Id)) {
-                                    data.getRef().removeValue();
-                                    commonsDivision.Favourite = false;
-                                    notifyDataSetChanged();
-                                    break;
-                                }
-                            }
-                        } else {
-                            Map<String, Object> childUpdates = new HashMap<>();
-                            childUpdates.put(myRef.push().getKey(), commonsDivision.Id);
-                            myRef.updateChildren(childUpdates);
-                            commonsDivision.Favourite = true;
-                            notifyDataSetChanged();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        Log.w(TAG, "Failed to remove value.", error.toException());
-                    }
-                });
-            }
-        });
+        FavouriteOnClickListener favouriteOnClickListener = new FavouriteOnClickListener(TAG, firebaseAuth, commonsDivision, this);
+        convertView.findViewById(R.id.imageView_favourite_list).setOnClickListener(favouriteOnClickListener);
 
         // Add Vote Titles
         String ayeVotes = "Aye Votes: " + Integer.toString(commonsDivision.AyeVotes);

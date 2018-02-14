@@ -2,16 +2,11 @@ package com.parliamentary.androidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.TextureView;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +26,9 @@ import com.parliamentary.androidapp.tasks.GetListFavouriteCommonsDivisionsTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static android.support.design.widget.BottomNavigationView.*;
+import static android.support.design.widget.BottomNavigationView.GONE;
+import static android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener;
+import static android.support.design.widget.BottomNavigationView.VISIBLE;
 
 public class FavouriteActivity extends AppCompatActivity {
 
@@ -60,20 +57,38 @@ public class FavouriteActivity extends AppCompatActivity {
 
         getFavourites();
     }
+
     private void getFavourites() {
-        progressCardView.setVisibility(View.VISIBLE);
+        progressCardView.setVisibility(VISIBLE);
         progressBarText.setText("Getting User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
+        DatabaseReference myRef = database.getReference("users");
 
         // Read from the database
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {};
-                HashMap<String, Long> favourites = dataSnapshot.getValue(genericTypeIndicator);
-                getCommonsDivisions(favourites);
+                ListView listView = findViewById(R.id.favouritesListView);
+                if (!dataSnapshot.child(user.getUid()).exists()) {
+                    listView.setVisibility(GONE);
+                    TextView favInfoTextView = findViewById(R.id.favInfoTextView);
+                    favInfoTextView.setText("No favourites found...");
+                    favInfoTextView.setVisibility(VISIBLE);
+                    progressCardView.setVisibility(GONE);
+                    return;
+                }
+                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {
+                };
+                HashMap<String, Long> favourites = dataSnapshot.child(user.getUid()).child("favourites").getValue(genericTypeIndicator);
+                if (favourites == null || favourites.isEmpty()) {
+                    listView.setVisibility(GONE);
+                    TextView favInfoTextView = findViewById(R.id.favInfoTextView);
+                    favInfoTextView.setText("No favourites found...");
+                    favInfoTextView.setVisibility(VISIBLE);
+                } else {
+                    getCommonsDivisions(favourites);
+                }
             }
 
             @Override
@@ -92,10 +107,10 @@ public class FavouriteActivity extends AppCompatActivity {
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, firebaseAuth, commonsDivisions);
                 ListView listView = findViewById(R.id.favouritesListView);
+                CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, firebaseAuth, commonsDivisions);
                 listView.setAdapter(adapter);
-                progressCardView.setVisibility(View.GONE);
+                progressCardView.setVisibility(GONE);
             }
         });
         asyncTask.execute(favourites);

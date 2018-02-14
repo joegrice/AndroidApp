@@ -97,8 +97,13 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {};
-                favourites = dataSnapshot.getValue(genericTypeIndicator);
+                GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {
+                };
+                if (dataSnapshot.getValue(genericTypeIndicator) == null) {
+                    favourites = new HashMap<>();
+                } else {
+                    favourites = dataSnapshot.getValue(genericTypeIndicator);
+                }
                 getMPCommonsDivisions();
             }
 
