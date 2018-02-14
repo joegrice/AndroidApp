@@ -13,10 +13,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".RegisterActivity"
-            android:label="@string/title_activity_register">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,11 +24,13 @@
             android:label="@string/title_activity_profile" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".MpActivity" />
+        <activity
+            android:name=".MpActivity"
+            android:label="@string/title_activity_mp" />
         <activity android:name=".CommonsDivisionsActivity" />
         <activity
             android:name=".FavouriteActivity"

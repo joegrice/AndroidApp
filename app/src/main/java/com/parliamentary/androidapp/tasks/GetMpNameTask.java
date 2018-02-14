@@ -1,8 +1,9 @@
-package com.parliamentary.androidapp;
+package com.parliamentary.androidapp.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.parliamentary.androidapp.MainActivity;
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.models.MpParliamentProfile;
 
@@ -16,12 +17,12 @@ import java.io.IOException;
  * Created by jg413 on 11/01/2018.
  */
 
-public class MpNameJsoup extends AsyncTask<Object, Object, Object> {
+public class GetMpNameTask extends AsyncTask<Object, Object, Object> {
 
     private String TAG = MainActivity.class.getSimpleName();
     public AsyncResponse delegate = null;
 
-    public MpNameJsoup(AsyncResponse delegate) {
+    public GetMpNameTask(AsyncResponse delegate) {
         this.delegate = delegate;
     }
 

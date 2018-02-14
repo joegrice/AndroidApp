@@ -2,15 +2,14 @@ package com.parliamentary.androidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,66 +19,63 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.parliamentary.androidapp.adapters.CommonsDivisionsAdapter;
 import com.parliamentary.androidapp.data.AsyncResponse;
+import com.parliamentary.androidapp.helpers.NavigationHelper;
 import com.parliamentary.androidapp.models.CommonsDivision;
+import com.parliamentary.androidapp.tasks.GetListCommonsDivisionsTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity {
+import static android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener;
+import static android.widget.AbsListView.OnScrollListener;
+
+public class MainActivity extends AppCompatActivity implements OnScrollListener {
 
     private String TAG = MpActivity.class.getSimpleName();
     private FirebaseAuth firebaseAuth;
-    private ProgressBar spinner;
-    private int pageNumber = 0;
+    private TextView progressBarText;
+    private CardView progressCardView;
+    private int pageNumber;
     private HashMap<String, Long> favourites;
     private CommonsDivisionsAdapter adapter;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private BottomNavigationView navigation;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            NavigationHelper navigationHelper = new NavigationHelper(MainActivity.this);
-            navigationHelper.onBottomNavigationViewClick(item);
-            return false;
-        }
-    };
+    private boolean mFlagOnScrollBeingProcessed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Firebase
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        spinner = (ProgressBar) findViewById(R.id.progressBar);
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        // Initialise variables
+        progressBarText = findViewById(R.id.mainProgressBarText);
+        progressCardView = findViewById(R.id.mainProgressCardView);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationHelper(this);
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         navigation.getMenu().getItem(0).setChecked(true);
+        ListView mainListView = findViewById(R.id.mainListView);
+        mainListView.setOnScrollListener(this);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshContent();
-            }
-        });
-
+        // Update Ui
         getFavourites();
     }
 
-    private void refreshContent() {
+    private void updateContent() {
         pageNumber++;
         addListCommonsDivisions();
-        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     private void getFavourites() {
+        progressCardView.setVisibility(View.VISIBLE);
+        progressBarText.setText("Getting User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
@@ -103,33 +99,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getListCommonsDivisions() {
-        spinner.setVisibility(View.VISIBLE);
+        progressBarText.setText("Getting Commons Divisions...");
         GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
                 adapter = new CommonsDivisionsAdapter(MainActivity.this, firebaseAuth, commonsDivisions);
-                ListView listView = (ListView) findViewById(R.id.mainListView);
+                ListView listView = findViewById(R.id.mainListView);
                 listView.setAdapter(adapter);
-                spinner.setVisibility(View.GONE);
+                mFlagOnScrollBeingProcessed = false;
+                progressCardView.setVisibility(View.GONE);
             }
         });
         asyncTask.execute(pageNumber, favourites);
     }
 
     private void addListCommonsDivisions() {
-        spinner.setVisibility(View.VISIBLE);
+        progressCardView.setVisibility(View.VISIBLE);
+        progressBarText.setText("Updating Commons Divisions...");
         GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
                 adapter.addAll(commonsDivisions);
-                spinner.setVisibility(View.GONE);
+                mFlagOnScrollBeingProcessed = false;
+                progressCardView.setVisibility(View.GONE);
             }
         });
         asyncTask.execute(pageNumber, favourites);
     }
 
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        if (totalItemCount == 0 ||
+                mFlagOnScrollBeingProcessed ||
+                firstVisibleItem + visibleItemCount < totalItemCount) {
+            return;
+        }
+
+        mFlagOnScrollBeingProcessed = true;
+        updateContent();
+    }
 }

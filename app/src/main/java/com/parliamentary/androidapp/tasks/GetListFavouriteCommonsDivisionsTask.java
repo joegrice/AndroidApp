@@ -1,8 +1,10 @@
-package com.parliamentary.androidapp;
+package com.parliamentary.androidapp.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.parliamentary.androidapp.helpers.HttpHandler;
+import com.parliamentary.androidapp.MainActivity;
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.models.CommonsDivision;
 import com.parliamentary.androidapp.models.PartyVoteDetail;

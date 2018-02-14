@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,28 +22,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.parliamentary.androidapp.adapters.CommonsDivisionsAdapter;
 import com.parliamentary.androidapp.data.AsyncResponse;
+import com.parliamentary.androidapp.helpers.NavigationHelper;
 import com.parliamentary.androidapp.models.CommonsDivision;
+import com.parliamentary.androidapp.tasks.GetListFavouriteCommonsDivisionsTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static android.support.design.widget.BottomNavigationView.*;
+
 public class FavouriteActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-    private ProgressBar spinner;
+    private CardView progressCardView;
+    private TextView progressBarText;
     private String TAG = FavouriteActivity.class.getSimpleName();
-    private BottomNavigationView navigation;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            NavigationHelper navigationHelper = new NavigationHelper(FavouriteActivity.this);
-            navigationHelper.onBottomNavigationViewClick(item);
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +51,18 @@ public class FavouriteActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        spinner = (ProgressBar) findViewById(R.id.progressBar);
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        progressCardView = findViewById(R.id.favProgressCardView);
+        progressBarText = findViewById(R.id.favProgressBarText);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationHelper(this);
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         navigation.getMenu().getItem(2).setChecked(true);
 
         getFavourites();
     }
     private void getFavourites() {
+        progressCardView.setVisibility(View.VISIBLE);
+        progressBarText.setText("Getting User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
@@ -84,16 +86,16 @@ public class FavouriteActivity extends AppCompatActivity {
 
 
     private void getCommonsDivisions(HashMap<String, Long> favourites) {
-        spinner.setVisibility(View.VISIBLE);
+        progressBarText.setText("Getting Commons Divisions...");
         GetListFavouriteCommonsDivisionsTask asyncTask = new GetListFavouriteCommonsDivisionsTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
                 CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, firebaseAuth, commonsDivisions);
-                ListView listView = (ListView) findViewById(R.id.favouritesListView);
+                ListView listView = findViewById(R.id.favouritesListView);
                 listView.setAdapter(adapter);
-                spinner.setVisibility(View.GONE);
+                progressCardView.setVisibility(View.GONE);
             }
         });
         asyncTask.execute(favourites);

@@ -1,4 +1,4 @@
-package com.parliamentary.androidapp;
+package com.parliamentary.androidapp.tasks;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +12,7 @@ import java.io.InputStream;
  * Created by jg413 on 13/01/2018.
  */
 
-class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
 
     public DownloadImageTask(ImageView bmImage) {

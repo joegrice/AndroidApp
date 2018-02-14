@@ -7,6 +7,7 @@
     <string name="title_activity_login">Login User</string>
     <string name="title_activity_register">Register User</string>
     <string name="title_activity_main">Divisions List</string>
+    <string name="title_activity_mp">MP Divisions List</string>
     <string name="title_mp">MP</string>
     <string name="title_list">List</string>
     <string name="title_favourite">Favourite</string>

@@ -1,10 +1,13 @@
-package com.parliamentary.androidapp;
+package com.parliamentary.androidapp.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.parliamentary.androidapp.helpers.HttpHandler;
+import com.parliamentary.androidapp.MainActivity;
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.models.CommonsDivision;
+import com.parliamentary.androidapp.models.MpParliamentProfile;
 import com.parliamentary.androidapp.models.PartyVoteDetail;
 import com.parliamentary.androidapp.models.VoteOptions;
 
@@ -20,12 +23,13 @@ import java.util.Map;
  * Created by jg413 on 12/01/2018.
  */
 
-public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Object> {
+public class GetListMpCommonsDivisionsTask extends AsyncTask<Object, Object, Object> {
 
     private String TAG = MainActivity.class.getSimpleName();
     public AsyncResponse delegate = null;
+    private MpParliamentProfile mpParliamentProfile;
 
-    public GetListCommonsDivisionsTask(AsyncResponse delegate) {
+    public GetListMpCommonsDivisionsTask(AsyncResponse delegate) {
         this.delegate = delegate;
     }
 
@@ -38,8 +42,9 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
     protected Object doInBackground(Object[] objects) {
         HttpHandler sh = new HttpHandler();
         ArrayList<CommonsDivision> commonsDivisions = new ArrayList<>();
-        int pageNumber = (int) objects[0];
+        mpParliamentProfile = (MpParliamentProfile) objects[0];
         HashMap<String, Long> favourites = (HashMap<String, Long>) objects[1];
+        int pageNumber = (int) objects[2];
 
         String url = "http://lda.data.parliament.uk/commonsdivisions.json?_view=Commons+Divisions&_pageSize=10&_page=" + pageNumber;
         String jsonStr = sh.makeServiceCall(url);
@@ -53,11 +58,8 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
 
                 for (int i = 0; i < items.length(); i++) {
                     JSONObject item = items.getJSONObject(i);
-                    String _about = item.getString("_about");
-                    String[] aboutSplit = _about.split("/");
-                    String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + aboutSplit[aboutSplit.length - 1] + ".json";
-                    jsonStr = sh.makeServiceCall(divisionUrl);
-                    CommonsDivision commonsDivision = createCommonsDivision(jsonStr, favourites);
+
+                    CommonsDivision commonsDivision = createCommonsDivision(item, favourites);
                     commonsDivisions.add(commonsDivision);
                 }
             } catch (final JSONException e) {
@@ -70,17 +72,20 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
         return commonsDivisions;
     }
 
-    private CommonsDivision createCommonsDivision(String jsonStr, HashMap<String, Long> favourites) throws JSONException {
+    private CommonsDivision createCommonsDivision(JSONObject item, HashMap<String, Long> favourites) throws JSONException {
+        HttpHandler sh = new HttpHandler();
         CommonsDivision commonsDivision = new CommonsDivision();
-        JSONObject jsonObj = new JSONObject(jsonStr);
-        JSONObject result = jsonObj.getJSONObject("result");
-        JSONObject primaryTopic = result.getJSONObject("primaryTopic");
-        String _about = primaryTopic.getString("_about");
+        String _about = item.getString("_about");
         String[] aboutSplit = _about.split("/");
         String id = aboutSplit[aboutSplit.length - 1];
         Long idLong = Long.parseLong(id);
         commonsDivision.Id = idLong;
         commonsDivision.Favourite = isFavourite(id, favourites);
+        String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + id + ".json";
+        String jsonStr = sh.makeServiceCall(divisionUrl);
+        JSONObject jsonObj = new JSONObject(jsonStr);
+        JSONObject result = jsonObj.getJSONObject("result");
+        JSONObject primaryTopic = result.getJSONObject("primaryTopic");
         String url = primaryTopic.getString("isPrimaryTopicOf");
         commonsDivision.Url = url;
         String title = primaryTopic.getString("title");
@@ -95,7 +100,7 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
         return commonsDivision;
     }
 
-    private boolean isFavourite(String id, HashMap <String, Long>  favourites) {
+    private boolean isFavourite(String id, HashMap<String, Long> favourites) {
         boolean favourite = false;
         for (Map.Entry<String, Long> entry : favourites.entrySet()) {
             if (Long.parseLong(id) == entry.getValue()) {
@@ -126,6 +131,15 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
         commonsDivision.partyVoteDetails = new ArrayList<>();
         for (int j = 0; j < vote.length(); j++) {
             JSONObject voteItem = vote.getJSONObject(j);
+            JSONObject memberPrinted = voteItem.getJSONObject("memberPrinted");
+            if (memberPrinted.getString("_value").equals(mpParliamentProfile.Name)) {
+                String[] type = voteItem.getString("type").split("#");
+                if (type[1].equals(VoteOptions.AyeVote)) {
+                    commonsDivision.MpVote = VoteOptions.AyeVote;
+                } else if (type[1].equals(VoteOptions.NoVote)) {
+                    commonsDivision.MpVote = VoteOptions.NoVote;
+                }
+            }
             String memberParty = voteItem.getString("memberParty");
             String[] type = voteItem.getString("type").split("#");
             boolean updatePartyVotes = updatePartyVotesDetails(commonsDivision, type[1], memberParty);

@@ -4,12 +4,12 @@ package com.parliamentary.androidapp;
  * Created by joegr on 02/11/2017.
  */
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -24,12 +24,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = RegisterActivity.class.getSimpleName();
-    private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private TextView textViewSignin;
-    private ProgressDialog progressDialog;
+    private CardView progressCardView;
+    private TextView progressBarText;
     private FirebaseAuth mAuth;
 
     @Override
@@ -38,17 +36,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this);
-
         if (mAuth.getCurrentUser() != null) {
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
 
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        textViewSignin = (TextView) findViewById(R.id.textViewSignIn);
+        Button buttonRegister = findViewById(R.id.buttonRegister);
+        TextView textViewSignin = findViewById(R.id.textViewSignIn);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        progressCardView = findViewById(R.id.regProgressCardView);
+        progressBarText = findViewById(R.id.regProgressBarText);
 
         buttonRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
@@ -68,12 +66,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        progressDialog.setMessage("Registering User...");
-        progressDialog.show();
+        progressCardView.setVisibility(View.VISIBLE);
+        progressBarText.setText("Registering User...");
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressCardView.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     if (task.isSuccessful()) {
                         finish();
@@ -84,16 +83,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         });
-
     }
 
     @Override
     public void onClick(View view) {
-        if (view == buttonRegister) {
-            registerUser();
-        }
-        if (view == textViewSignin) {
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        switch (view.getId()) {
+            case R.id.buttonRegister:
+                registerUser();
+                break;
+            case R.id.textViewSignIn:
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                break;
         }
     }
 }

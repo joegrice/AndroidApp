@@ -12,23 +12,15 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.parliamentary.androidapp.helpers.NavigationHelper;
+
+import static android.support.design.widget.BottomNavigationView.*;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     private TextView textViewProfileTitle;
     private Button buttonLogout;
-    BottomNavigationView navigation;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            NavigationHelper navigationHelper = new NavigationHelper(ProfileActivity.this);
-            navigationHelper.onBottomNavigationViewClick(item);
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +36,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-        textViewProfileTitle = (TextView) findViewById(R.id.textViewProfileTitle);
+        textViewProfileTitle = findViewById(R.id.textViewProfileTitle);
         textViewProfileTitle.setText("Welcome " + user.getEmail());
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        buttonLogout = findViewById(R.id.buttonLogout);
 
         buttonLogout.setOnClickListener(this);
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationHelper(this);
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         navigation.getMenu().getItem(3).setChecked(true);
     }
 

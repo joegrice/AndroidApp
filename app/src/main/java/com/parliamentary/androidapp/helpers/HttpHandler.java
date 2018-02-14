@@ -1,4 +1,4 @@
-package com.parliamentary.androidapp;
+package com.parliamentary.androidapp.helpers;
 
 import android.util.Log;
 

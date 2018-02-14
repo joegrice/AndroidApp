@@ -1,14 +1,22 @@
-package com.parliamentary.androidapp;
+package com.parliamentary.androidapp.helpers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
+
+import com.parliamentary.androidapp.FavouriteActivity;
+import com.parliamentary.androidapp.MainActivity;
+import com.parliamentary.androidapp.MpActivity;
+import com.parliamentary.androidapp.ProfileActivity;
+import com.parliamentary.androidapp.R;
 
 /**
  * Created by jg413 on 18/01/2018.
  */
 
-public class NavigationHelper {
+public class NavigationHelper implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     Context context;
 
@@ -31,5 +39,11 @@ public class NavigationHelper {
                 context.startActivity(new Intent(context, FavouriteActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        onBottomNavigationViewClick(item);
+        return false;
     }
 }
