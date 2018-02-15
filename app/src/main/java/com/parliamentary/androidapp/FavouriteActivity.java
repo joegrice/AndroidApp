@@ -70,10 +70,10 @@ public class FavouriteActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ListView listView = findViewById(R.id.favouritesListView);
-                if (!dataSnapshot.child(user.getUid()).exists()) {
+                if (!dataSnapshot.child(user.getUid()).child("favourites").exists()) {
                     listView.setVisibility(GONE);
                     TextView favInfoTextView = findViewById(R.id.favInfoTextView);
-                    favInfoTextView.setText("No favourites found...");
+                    favInfoTextView.setText("No favourites found");
                     favInfoTextView.setVisibility(VISIBLE);
                     progressCardView.setVisibility(GONE);
                     return;
@@ -98,7 +98,6 @@ public class FavouriteActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void getCommonsDivisions(HashMap<String, Long> favourites) {
         progressBarText.setText("Getting Commons Divisions...");

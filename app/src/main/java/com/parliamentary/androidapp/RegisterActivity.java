@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,22 +22,32 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private final String TAG = this.getClass().getSimpleName();
     private EditText editTextEmail;
     private EditText editTextPassword;
     private CardView progressCardView;
     private TextView progressBarText;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null) {
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
@@ -69,18 +80,41 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressCardView.setVisibility(View.VISIBLE);
         progressBarText.setText("Registering User...");
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressCardView.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     if (task.isSuccessful()) {
+                        addUserToDatabase();
                         finish();
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     }
                 } else {
                     Toast.makeText(RegisterActivity.this, "Could not register... please try again", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void addUserToDatabase() {
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("users");
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.child(user.getUid()).exists()) {
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("postcode", "");
+                    myRef.child(user.getUid()).setValue(childUpdates);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "Failed to remove value.", databaseError.toException());
             }
         });
     }

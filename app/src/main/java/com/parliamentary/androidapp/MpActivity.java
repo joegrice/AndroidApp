@@ -9,14 +9,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,7 +39,7 @@ import com.parliamentary.androidapp.tasks.GetMpNameTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static android.widget.AbsListView.*;
+import static android.widget.AbsListView.OnScrollListener;
 
 public class MpActivity extends AppCompatActivity implements OnScrollListener {
 
@@ -78,7 +79,42 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         mainListView.setOnScrollListener(this);
 
         // Update Ui
-        getUserPostCode();
+        getPostcodeFromDatabase();
+    }
+
+    private void getPostcodeFromDatabase() {
+        progressCardView.setVisibility(View.VISIBLE);
+        progressBarText.setText("Getting User Postcode...");
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("postcode");
+
+        // Read from the database
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String dataValue = dataSnapshot.getValue(String.class);
+                if (dataValue != null && (!TextUtils.equals(dataValue, "null")) && (!TextUtils.isEmpty(dataValue))) {
+                    postcode = dataValue;
+                    getNewMP();
+                } else {
+                    askUserForPostCode();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    private void savePostcodetoDatabase() {
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("postcode");
+        myRef.setValue(postcode);
     }
 
     private void updateContent() {
@@ -164,8 +200,9 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         asyncTask.execute(postcode);
     }
 
-    private void getUserPostCode() {
+    private void askUserForPostCode() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
         builder.setTitle("Enter your postcode:");
 
         final EditText input = new EditText(this);
@@ -175,8 +212,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                postcode = input.getText().toString();
-                getNewMP();
+                checkPostcode(input.getText().toString());
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -186,7 +222,20 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
             }
         });
 
-        builder.show();
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void checkPostcode(String input) {
+        if (input.matches("([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([AZa-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))[0-9][A-Za-z]{2})")) {
+            postcode = input;
+            savePostcodetoDatabase();
+            getNewMP();
+        } else {
+            Toast.makeText(MpActivity.this, "Invalid postcode please check you typed it correctly.", Toast.LENGTH_SHORT).show();
+            askUserForPostCode();
+        }
     }
 
     @Override

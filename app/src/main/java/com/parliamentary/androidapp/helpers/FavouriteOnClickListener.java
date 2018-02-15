@@ -39,7 +39,6 @@ public class FavouriteOnClickListener implements View.OnClickListener {
     public void onClick(View view) {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //final DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
         final DatabaseReference myRef = database.getReference("users");
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -56,18 +55,14 @@ public class FavouriteOnClickListener implements View.OnClickListener {
                         }
                     }
                 } else {
-                    if (!dataSnapshot.child(user.getUid()).exists()) {
-                        Map<String, Object> childUpdates = new HashMap<>();
+                    if (!dataSnapshot.child(user.getUid()).child("favourites").exists()) {
                         Map<String, Object> favourites = new HashMap<>();
                         favourites.put(myRef.child(user.getUid()).push().getKey(), commonsDivision.Id);
-                        childUpdates.put("favourites", favourites);
-                        myRef.child(user.getUid()).setValue(childUpdates);
+                        myRef.child(user.getUid()).child("favourites").setValue(favourites);
                         commonsDivision.Favourite = true;
                         arrayAdapter.notifyDataSetChanged();
                     } else {
-                        Map<String, Object> childUpdates = new HashMap<>();
-                        childUpdates.put(myRef.child(user.getUid()).child("favourites").push().getKey(), commonsDivision.Id);
-                        myRef.updateChildren(childUpdates);
+                        myRef.child(user.getUid()).child("favourites").child(myRef.child(user.getUid()).push().getKey()).setValue(commonsDivision.Id);
                         commonsDivision.Favourite = true;
                         arrayAdapter.notifyDataSetChanged();
                     }
@@ -75,9 +70,9 @@ public class FavouriteOnClickListener implements View.OnClickListener {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(DatabaseError databaseError) {
                 // Failed to read value
-                Log.w(TAG, "Failed to remove value.", error.toException());
+                Log.w(TAG, "Failed to remove value.", databaseError.toException());
             }
         });
     }
