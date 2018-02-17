@@ -1,0 +1,1272 @@
+{ "format" : "linked-data-api", "version" : "0.2", "result" : {"_about" : "http://eldaddp.azurewebsites.net/commonsdivisions/id/837690.json", "definition" : "http://eldaddp.azurewebsites.net/meta/commonsdivisions/id/_ddpid.json", "extendedMetadataVersion" : "http://eldaddp.azurewebsites.net/commonsdivisions/id/837690.json?_metadata=all", "primaryTopic" : {"_about" : "http://data.parliament.uk/resources/837690", "AbstainCount" : [{"_value" : "0"}
+], "AyesCount" : [{"_value" : "33"}
+], "DeferredVote" : false, "Didnotvotecount" : [{"_value" : "0"}
+], "Errorvotecount" : [{"_value" : "0"}
+], "Margin" : [{"_value" : "249"}
+], "Noesvotecount" : [{"_value" : "282"}
+], "Noneligiblecount" : [{"_value" : "0"}
+], "Suspendedorexpelledvotescount" : [{"_value" : "0"}
+], "date" : {"_value" : "2018-02-06", "_datatype" : "dateTime"}
+, "divisionNumber" : "115", "isPrimaryTopicOf" : "http://eldaddp.azurewebsites.net/commonsdivisions/id/837690.json", "legislature" : ["http://data.parliament.uk/terms/25259"], "session" : ["2017/19", "http://data.parliament.uk/resources/730830"], "title" : "Space Industry Bill: Report Stage Amdt 1", "uin" : "CD:2018-02-06:382", "vote" : [{"_about" : "http://data.parliament.uk/resources/837690/vote/1", "member" : [{"_about" : "http://data.parliament.uk/members/4357", "label" : {"_value" : "Biography information for Kirsty Blackman"}
+  }
+  ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Kirsty Blackman"}
+  , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/10", "member" : [{"_about" : "http://data.parliament.uk/members/3943", "label" : {"_value" : "Biography information for Jonathan Edwards"}
+    }
+    ], "memberParty" : "Plaid Cymru", "memberPrinted" : {"_value" : "Jonathan Edwards"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/100", "member" : [{"_about" : "http://data.parliament.uk/members/3998", "label" : {"_value" : "Biography information for Mark Menzies"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mark Menzies"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/101", "member" : [{"_about" : "http://data.parliament.uk/members/4442", "label" : {"_value" : "Biography information for Huw Merriman"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Huw Merriman"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/102", "member" : [{"_about" : "http://data.parliament.uk/members/4092", "label" : {"_value" : "Biography information for Stephen Metcalfe"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Stephen Metcalfe"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/103", "member" : [{"_about" : "http://data.parliament.uk/members/1480", "label" : {"_value" : "Biography information for Mrs Maria Miller"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mrs Maria Miller"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/104", "member" : [{"_about" : "http://data.parliament.uk/members/4454", "label" : {"_value" : "Biography information for Amanda Milling"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Amanda Milling"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/105", "member" : [{"_about" : "http://data.parliament.uk/members/4136", "label" : {"_value" : "Biography information for Nigel Mills"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nigel Mills"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/106", "member" : [{"_about" : "http://data.parliament.uk/members/1523", "label" : {"_value" : "Biography information for Anne Milton"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Anne Milton"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/107", "member" : [{"_about" : "http://data.parliament.uk/members/1211", "label" : {"_value" : "Biography information for Mr Andrew Mitchell"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Andrew Mitchell"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/108", "member" : [{"_about" : "http://data.parliament.uk/members/4669", "label" : {"_value" : "Biography information for Damien Moore"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Damien Moore"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/109", "member" : [{"_about" : "http://data.parliament.uk/members/4017", "label" : {"_value" : "Biography information for Penny Mordaunt"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Penny Mordaunt"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/11", "member" : [{"_about" : "http://data.parliament.uk/members/4434", "label" : {"_value" : "Biography information for Stephen Gethins"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Stephen Gethins"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/110", "member" : [{"_about" : "http://data.parliament.uk/members/4027", "label" : {"_value" : "Biography information for Nicky Morgan"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nicky Morgan"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/111", "member" : [{"_about" : "http://data.parliament.uk/members/4249", "label" : {"_value" : "Biography information for Anne Marie Morris"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Anne Marie Morris"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/112", "member" : [{"_about" : "http://data.parliament.uk/members/4135", "label" : {"_value" : "Biography information for David Morris"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David Morris"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/113", "member" : [{"_about" : "http://data.parliament.uk/members/3992", "label" : {"_value" : "Biography information for James Morris"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "James Morris"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/114", "member" : [{"_about" : "http://data.parliament.uk/members/4358", "label" : {"_value" : "Biography information for Wendy Morton"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Wendy Morton"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/115", "member" : [{"_about" : "http://data.parliament.uk/members/1512", "label" : {"_value" : "Biography information for David Mundell"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David Mundell"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/116", "member" : [{"_about" : "http://data.parliament.uk/members/4100", "label" : {"_value" : "Biography information for Mrs Sheryll Murray"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mrs Sheryll Murray"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/117", "member" : [{"_about" : "http://data.parliament.uk/members/1466", "label" : {"_value" : "Biography information for Dr Andrew Murrison"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Andrew Murrison"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/118", "member" : [{"_about" : "http://data.parliament.uk/members/4057", "label" : {"_value" : "Biography information for Nigel Adams"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nigel Adams"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/119", "member" : [{"_about" : "http://data.parliament.uk/members/4639", "label" : {"_value" : "Biography information for Bim Afolami"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Bim Afolami"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/12", "member" : [{"_about" : "http://data.parliament.uk/members/4435", "label" : {"_value" : "Biography information for Patricia Gibson"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Patricia Gibson"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/120", "member" : [{"_about" : "http://data.parliament.uk/members/1586", "label" : {"_value" : "Biography information for Adam Afriyie"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Adam Afriyie"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/121", "member" : [{"_about" : "http://data.parliament.uk/members/4069", "label" : {"_value" : "Biography information for Peter Aldous"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Peter Aldous"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/122", "member" : [{"_about" : "http://data.parliament.uk/members/4411", "label" : {"_value" : "Biography information for Lucy Allan"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Lucy Allan"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/123", "member" : [{"_about" : "http://data.parliament.uk/members/4516", "label" : {"_value" : "Biography information for Heidi Allen"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Heidi Allen"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/124", "member" : [{"_about" : "http://data.parliament.uk/members/44", "label" : {"_value" : "Biography information for Sir David Amess"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir David Amess"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/125", "member" : [{"_about" : "http://data.parliament.uk/members/4032", "label" : {"_value" : "Biography information for Stuart Andrew"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Stuart Andrew"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/126", "member" : [{"_about" : "http://data.parliament.uk/members/4362", "label" : {"_value" : "Biography information for Edward Argar"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Edward Argar"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/127", "member" : [{"_about" : "http://data.parliament.uk/members/4399", "label" : {"_value" : "Biography information for Victoria Atkins"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Victoria Atkins"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/128", "member" : [{"_about" : "http://data.parliament.uk/members/1451", "label" : {"_value" : "Biography information for Mr Richard Bacon"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Richard Bacon"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/129", "member" : [{"_about" : "http://data.parliament.uk/members/4597", "label" : {"_value" : "Biography information for Mrs Kemi Badenoch"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mrs Kemi Badenoch"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/13", "member" : [{"_about" : "http://data.parliament.uk/members/4432", "label" : {"_value" : "Biography information for Patrick Grady"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Patrick Grady"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/130", "member" : [{"_about" : "http://data.parliament.uk/members/4064", "label" : {"_value" : "Biography information for Mr Steve Baker"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Steve Baker"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/131", "member" : [{"_about" : "http://data.parliament.uk/members/4107", "label" : {"_value" : "Biography information for Harriett Baldwin"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Harriett Baldwin"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/132", "member" : [{"_about" : "http://data.parliament.uk/members/4095", "label" : {"_value" : "Biography information for Stephen Barclay"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Stephen Barclay"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/133", "member" : [{"_about" : "http://data.parliament.uk/members/1390", "label" : {"_value" : "Biography information for Mr John Baron"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr John Baron"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/134", "member" : [{"_about" : "http://data.parliament.uk/members/3910", "label" : {"_value" : "Biography information for Guto Bebb"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Guto Bebb"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/135", "member" : [{"_about" : "http://data.parliament.uk/members/1441", "label" : {"_value" : "Biography information for Sir Henry Bellingham"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Henry Bellingham"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/136", "member" : [{"_about" : "http://data.parliament.uk/members/1547", "label" : {"_value" : "Biography information for Richard Benyon"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Richard Benyon"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/137", "member" : [{"_about" : "http://data.parliament.uk/members/103", "label" : {"_value" : "Biography information for Sir Paul Beresford"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Paul Beresford"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/138", "member" : [{"_about" : "http://data.parliament.uk/members/4060", "label" : {"_value" : "Biography information for Jake Berry"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jake Berry"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/139", "member" : [{"_about" : "http://data.parliament.uk/members/4005", "label" : {"_value" : "Biography information for Bob Blackman"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Bob Blackman"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/14", "member" : [{"_about" : "http://data.parliament.uk/members/4466", "label" : {"_value" : "Biography information for Peter Grant"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Peter Grant"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/140", "member" : [{"_about" : "http://data.parliament.uk/members/104", "label" : {"_value" : "Biography information for Crispin Blunt"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Crispin Blunt"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/141", "member" : [{"_about" : "http://data.parliament.uk/members/3995", "label" : {"_value" : "Biography information for Nick Boles"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nick Boles"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/142", "member" : [{"_about" : "http://data.parliament.uk/members/4601", "label" : {"_value" : "Biography information for Andrew Bowie"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Bowie"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/143", "member" : [{"_about" : "http://data.parliament.uk/members/4663", "label" : {"_value" : "Biography information for Ben Bradley"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Ben Bradley"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/144", "member" : [{"_about" : "http://data.parliament.uk/members/435", "label" : {"_value" : "Biography information for Sir Graham Brady"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Graham Brady"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/145", "member" : [{"_about" : "http://data.parliament.uk/members/4643", "label" : {"_value" : "Biography information for Jack Brereton"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jack Brereton"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/146", "member" : [{"_about" : "http://data.parliament.uk/members/4133", "label" : {"_value" : "Biography information for Andrew Bridgen"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Bridgen"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/147", "member" : [{"_about" : "http://data.parliament.uk/members/4067", "label" : {"_value" : "Biography information for Steve Brine"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Steve Brine"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/148", "member" : [{"_about" : "http://data.parliament.uk/members/3958", "label" : {"_value" : "Biography information for Fiona Bruce"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Fiona Bruce"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/149", "member" : [{"_about" : "http://data.parliament.uk/members/4106", "label" : {"_value" : "Biography information for Robert Buckland"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Robert Buckland"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/15", "member" : [{"_about" : "http://data.parliament.uk/members/4365", "label" : {"_value" : "Biography information for Neil Gray"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Neil Gray"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/150", "member" : [{"_about" : "http://data.parliament.uk/members/4613", "label" : {"_value" : "Biography information for Alex Burghart"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alex Burghart"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/151", "member" : [{"_about" : "http://data.parliament.uk/members/3922", "label" : {"_value" : "Biography information for Conor Burns"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Conor Burns"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/152", "member" : [{"_about" : "http://data.parliament.uk/members/1201", "label" : {"_value" : "Biography information for Alistair Burt"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alistair Burt"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/153", "member" : [{"_about" : "http://data.parliament.uk/members/4086", "label" : {"_value" : "Biography information for Alun Cairns"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alun Cairns"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/154", "member" : [{"_about" : "http://data.parliament.uk/members/4519", "label" : {"_value" : "Biography information for James Cartlidge"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "James Cartlidge"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/155", "member" : [{"_about" : "http://data.parliament.uk/members/288", "label" : {"_value" : "Biography information for Sir William Cash"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir William Cash"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/156", "member" : [{"_about" : "http://data.parliament.uk/members/4492", "label" : {"_value" : "Biography information for Maria Caulfield"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Maria Caulfield"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/157", "member" : [{"_about" : "http://data.parliament.uk/members/4481", "label" : {"_value" : "Biography information for Alex Chalk"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alex Chalk"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/158", "member" : [{"_about" : "http://data.parliament.uk/members/3987", "label" : {"_value" : "Biography information for Rehman Chishti"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Rehman Chishti"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/159", "member" : [{"_about" : "http://data.parliament.uk/members/242", "label" : {"_value" : "Biography information for Sir Christopher Chope"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Christopher Chope"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/16", "member" : [{"_about" : "http://data.parliament.uk/members/4467", "label" : {"_value" : "Biography information for Drew Hendry"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Drew Hendry"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/160", "member" : [{"_about" : "http://data.parliament.uk/members/4380", "label" : {"_value" : "Biography information for Jo Churchill"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jo Churchill"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/161", "member" : [{"_about" : "http://data.parliament.uk/members/4650", "label" : {"_value" : "Biography information for Colin Clark"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Colin Clark"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/162", "member" : [{"_about" : "http://data.parliament.uk/members/1578", "label" : {"_value" : "Biography information for Greg Clark"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Greg Clark"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/163", "member" : [{"_about" : "http://data.parliament.uk/members/366", "label" : {"_value" : "Biography information for Mr Kenneth Clarke"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Kenneth Clarke"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/164", "member" : [{"_about" : "http://data.parliament.uk/members/4655", "label" : {"_value" : "Biography information for Mr Simon Clarke"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Simon Clarke"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/165", "member" : [{"_about" : "http://data.parliament.uk/members/4366", "label" : {"_value" : "Biography information for James Cleverly"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "James Cleverly"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/166", "member" : [{"_about" : "http://data.parliament.uk/members/249", "label" : {"_value" : "Biography information for Sir Geoffrey Clifton-Brown"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Geoffrey Clifton-Brown"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/167", "member" : [{"_about" : "http://data.parliament.uk/members/4098", "label" : {"_value" : "Biography information for Dr Thérèse Coffey"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Thérèse Coffey"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/168", "member" : [{"_about" : "http://data.parliament.uk/members/4439", "label" : {"_value" : "Biography information for Alberto Costa"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alberto Costa"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/169", "member" : [{"_about" : "http://data.parliament.uk/members/4589", "label" : {"_value" : "Biography information for Robert Courts"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Robert Courts"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/17", "member" : [{"_about" : "http://data.parliament.uk/members/4602", "label" : {"_value" : "Biography information for Wera Hobhouse"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Wera Hobhouse"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/170", "member" : [{"_about" : "http://data.parliament.uk/members/1554", "label" : {"_value" : "Biography information for Stephen Crabb"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Stephen Crabb"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/171", "member" : [{"_about" : "http://data.parliament.uk/members/4376", "label" : {"_value" : "Biography information for Chris Davies"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Chris Davies"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/172", "member" : [{"_about" : "http://data.parliament.uk/members/1545", "label" : {"_value" : "Biography information for David T. C. Davies"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David T. C. Davies"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/173", "member" : [{"_about" : "http://data.parliament.uk/members/4041", "label" : {"_value" : "Biography information for Glyn Davies"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Glyn Davies"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/174", "member" : [{"_about" : "http://data.parliament.uk/members/1565", "label" : {"_value" : "Biography information for Philip Davies"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Philip Davies"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/175", "member" : [{"_about" : "http://data.parliament.uk/members/4008", "label" : {"_value" : "Biography information for Caroline Dinenage"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Caroline Dinenage"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/176", "member" : [{"_about" : "http://data.parliament.uk/members/1425", "label" : {"_value" : "Biography information for Mr Jonathan Djanogly"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Jonathan Djanogly"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/177", "member" : [{"_about" : "http://data.parliament.uk/members/4600", "label" : {"_value" : "Biography information for Leo Docherty"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Leo Docherty"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/178", "member" : [{"_about" : "http://data.parliament.uk/members/1388", "label" : {"_value" : "Biography information for Nigel Dodds"}
+    }
+    ], "memberParty" : "Democratic Unionist Party", "memberPrinted" : {"_value" : "Nigel Dodds"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/179", "member" : [{"_about" : "http://data.parliament.uk/members/4530", "label" : {"_value" : "Biography information for Michelle Donelan"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Michelle Donelan"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/18", "member" : [{"_about" : "http://data.parliament.uk/members/1514", "label" : {"_value" : "Biography information for Stewart Hosie"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Stewart Hosie"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/180", "member" : [{"_about" : "http://data.parliament.uk/members/4452", "label" : {"_value" : "Biography information for Steve Double"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Steve Double"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/181", "member" : [{"_about" : "http://data.parliament.uk/members/4441", "label" : {"_value" : "Biography information for Oliver Dowden"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Oliver Dowden"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/182", "member" : [{"_about" : "http://data.parliament.uk/members/4065", "label" : {"_value" : "Biography information for Jackie Doyle-Price"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jackie Doyle-Price"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/183", "member" : [{"_about" : "http://data.parliament.uk/members/4132", "label" : {"_value" : "Biography information for Richard Drax"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Richard Drax"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/184", "member" : [{"_about" : "http://data.parliament.uk/members/1559", "label" : {"_value" : "Biography information for James Duddridge"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "James Duddridge"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/185", "member" : [{"_about" : "http://data.parliament.uk/members/4606", "label" : {"_value" : "Biography information for David Duguid"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David Duguid"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/186", "member" : [{"_about" : "http://data.parliament.uk/members/152", "label" : {"_value" : "Biography information for Mr Iain Duncan Smith"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Iain Duncan Smith"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/187", "member" : [{"_about" : "http://data.parliament.uk/members/343", "label" : {"_value" : "Biography information for Sir Alan Duncan"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Alan Duncan"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/188", "member" : [{"_about" : "http://data.parliament.uk/members/1542", "label" : {"_value" : "Biography information for Mr Philip Dunne"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Philip Dunne"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/189", "member" : [{"_about" : "http://data.parliament.uk/members/4116", "label" : {"_value" : "Biography information for Michael Ellis"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Michael Ellis"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/19", "member" : [{"_about" : "http://data.parliament.uk/members/4634", "label" : {"_value" : "Biography information for Christine Jardine"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Christine Jardine"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/190", "member" : [{"_about" : "http://data.parliament.uk/members/1487", "label" : {"_value" : "Biography information for Mr Tobias Ellwood"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Tobias Ellwood"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/191", "member" : [{"_about" : "http://data.parliament.uk/members/3971", "label" : {"_value" : "Biography information for Charlie Elphicke"}
+    }
+    ], "memberParty" : "Independent", "memberPrinted" : {"_value" : "Charlie Elphicke"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/192", "member" : [{"_about" : "http://data.parliament.uk/members/3934", "label" : {"_value" : "Biography information for George Eustice"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "George Eustice"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/193", "member" : [{"_about" : "http://data.parliament.uk/members/1198", "label" : {"_value" : "Biography information for David Evennett"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David Evennett"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/194", "member" : [{"_about" : "http://data.parliament.uk/members/280", "label" : {"_value" : "Biography information for Michael Fabricant"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Michael Fabricant"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/195", "member" : [{"_about" : "http://data.parliament.uk/members/88", "label" : {"_value" : "Biography information for Sir Michael Fallon"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Michael Fallon"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/196", "member" : [{"_about" : "http://data.parliament.uk/members/4475", "label" : {"_value" : "Biography information for Suella Fernandes"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Suella Fernandes"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/197", "member" : [{"_about" : "http://data.parliament.uk/members/1405", "label" : {"_value" : "Biography information for Mark Field"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mark Field"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/198", "member" : [{"_about" : "http://data.parliament.uk/members/4674", "label" : {"_value" : "Biography information for Vicky Ford"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Vicky Ford"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/199", "member" : [{"_about" : "http://data.parliament.uk/members/4451", "label" : {"_value" : "Biography information for Kevin Foster"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Kevin Foster"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/2", "member" : [{"_about" : "http://data.parliament.uk/members/151", "label" : {"_value" : "Biography information for Tom Brake"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Tom Brake"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/20", "member" : [{"_about" : "http://data.parliament.uk/members/4630", "label" : {"_value" : "Biography information for Ben Lake"}
+    }
+    ], "memberParty" : "Plaid Cymru", "memberPrinted" : {"_value" : "Ben Lake"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/200", "member" : [{"_about" : "http://data.parliament.uk/members/223", "label" : {"_value" : "Biography information for Dr Liam Fox"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Liam Fox"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/201", "member" : [{"_about" : "http://data.parliament.uk/members/4517", "label" : {"_value" : "Biography information for Lucy Frazer"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Lucy Frazer"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/202", "member" : [{"_about" : "http://data.parliament.uk/members/4020", "label" : {"_value" : "Biography information for George Freeman"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "George Freeman"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/203", "member" : [{"_about" : "http://data.parliament.uk/members/4004", "label" : {"_value" : "Biography information for Mike Freer"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mike Freer"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/204", "member" : [{"_about" : "http://data.parliament.uk/members/87", "label" : {"_value" : "Biography information for Sir Roger Gale"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Roger Gale"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/205", "member" : [{"_about" : "http://data.parliament.uk/members/4074", "label" : {"_value" : "Biography information for Mark Garnier"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mark Garnier"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/206", "member" : [{"_about" : "http://data.parliament.uk/members/1529", "label" : {"_value" : "Biography information for Mr David Gauke"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr David Gauke"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/207", "member" : [{"_about" : "http://data.parliament.uk/members/4460", "label" : {"_value" : "Biography information for Ms Nusrat Ghani"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Ms Nusrat Ghani"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/208", "member" : [{"_about" : "http://data.parliament.uk/members/111", "label" : {"_value" : "Biography information for Nick Gibb"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nick Gibb"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/209", "member" : [{"_about" : "http://data.parliament.uk/members/18", "label" : {"_value" : "Biography information for Dame Cheryl Gillan"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dame Cheryl Gillan"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/21", "member" : [{"_about" : "http://data.parliament.uk/members/1439", "label" : {"_value" : "Biography information for Norman Lamb"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Norman Lamb"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/210", "member" : [{"_about" : "http://data.parliament.uk/members/4633", "label" : {"_value" : "Biography information for Paul Girvan"}
+    }
+    ], "memberParty" : "Democratic Unionist Party", "memberPrinted" : {"_value" : "Paul Girvan"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/211", "member" : [{"_about" : "http://data.parliament.uk/members/4051", "label" : {"_value" : "Biography information for John Glen"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "John Glen"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/212", "member" : [{"_about" : "http://data.parliament.uk/members/4062", "label" : {"_value" : "Biography information for Zac Goldsmith"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Zac Goldsmith"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/213", "member" : [{"_about" : "http://data.parliament.uk/members/1562", "label" : {"_value" : "Biography information for Mr Robert Goodwill"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Robert Goodwill"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/214", "member" : [{"_about" : "http://data.parliament.uk/members/1571", "label" : {"_value" : "Biography information for Michael Gove"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Michael Gove"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/215", "member" : [{"_about" : "http://data.parliament.uk/members/4622", "label" : {"_value" : "Biography information for Luke Graham"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Luke Graham"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/216", "member" : [{"_about" : "http://data.parliament.uk/members/3990", "label" : {"_value" : "Biography information for Richard Graham"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Richard Graham"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/217", "member" : [{"_about" : "http://data.parliament.uk/members/4605", "label" : {"_value" : "Biography information for Bill Grant"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Bill Grant"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/218", "member" : [{"_about" : "http://data.parliament.uk/members/4018", "label" : {"_value" : "Biography information for Mrs Helen Grant"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mrs Helen Grant"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/219", "member" : [{"_about" : "http://data.parliament.uk/members/261", "label" : {"_value" : "Biography information for James Gray"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "James Gray"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/22", "member" : [{"_about" : "http://data.parliament.uk/members/4403", "label" : {"_value" : "Biography information for Chris Law"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Chris Law"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/220", "member" : [{"_about" : "http://data.parliament.uk/members/1413", "label" : {"_value" : "Biography information for Chris Grayling"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Chris Grayling"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/221", "member" : [{"_about" : "http://data.parliament.uk/members/4398", "label" : {"_value" : "Biography information for Chris Green"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Chris Green"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/222", "member" : [{"_about" : "http://data.parliament.uk/members/76", "label" : {"_value" : "Biography information for Damian Green"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Damian Green"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/223", "member" : [{"_about" : "http://data.parliament.uk/members/1555", "label" : {"_value" : "Biography information for Justine Greening"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Justine Greening"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/224", "member" : [{"_about" : "http://data.parliament.uk/members/16", "label" : {"_value" : "Biography information for Mr Dominic Grieve"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Dominic Grieve"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/225", "member" : [{"_about" : "http://data.parliament.uk/members/3936", "label" : {"_value" : "Biography information for Andrew Griffiths"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Griffiths"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/226", "member" : [{"_about" : "http://data.parliament.uk/members/3980", "label" : {"_value" : "Biography information for Mr Sam Gyimah"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Sam Gyimah"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/227", "member" : [{"_about" : "http://data.parliament.uk/members/1601", "label" : {"_value" : "Biography information for Robert Neill"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Robert Neill"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/228", "member" : [{"_about" : "http://data.parliament.uk/members/4071", "label" : {"_value" : "Biography information for Sarah Newton"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sarah Newton"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/229", "member" : [{"_about" : "http://data.parliament.uk/members/4048", "label" : {"_value" : "Biography information for Caroline Nokes"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Caroline Nokes"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/23", "member" : [{"_about" : "http://data.parliament.uk/members/4640", "label" : {"_value" : "Biography information for David Linden"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "David Linden"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/230", "member" : [{"_about" : "http://data.parliament.uk/members/3991", "label" : {"_value" : "Biography information for Jesse Norman"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jesse Norman"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/231", "member" : [{"_about" : "http://data.parliament.uk/members/4679", "label" : {"_value" : "Biography information for Neil O'Brien"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Neil O'Brien"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/232", "member" : [{"_about" : "http://data.parliament.uk/members/4006", "label" : {"_value" : "Biography information for Dr Matthew Offord"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Matthew Offord"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/233", "member" : [{"_about" : "http://data.parliament.uk/members/4142", "label" : {"_value" : "Biography information for Guy Opperman"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Guy Opperman"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/234", "member" : [{"_about" : "http://data.parliament.uk/members/4072", "label" : {"_value" : "Biography information for Neil Parish"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Neil Parish"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/235", "member" : [{"_about" : "http://data.parliament.uk/members/4066", "label" : {"_value" : "Biography information for Priti Patel"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Priti Patel"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/236", "member" : [{"_about" : "http://data.parliament.uk/members/4052", "label" : {"_value" : "Biography information for Mark Pawsey"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mark Pawsey"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/237", "member" : [{"_about" : "http://data.parliament.uk/members/1528", "label" : {"_value" : "Biography information for Sir Mike Penning"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Mike Penning"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/238", "member" : [{"_about" : "http://data.parliament.uk/members/1584", "label" : {"_value" : "Biography information for John Penrose"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "John Penrose"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/239", "member" : [{"_about" : "http://data.parliament.uk/members/3939", "label" : {"_value" : "Biography information for Andrew Percy"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Percy"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/24", "member" : [{"_about" : "http://data.parliament.uk/members/3968", "label" : {"_value" : "Biography information for Stephen Lloyd"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Stephen Lloyd"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/240", "member" : [{"_about" : "http://data.parliament.uk/members/3974", "label" : {"_value" : "Biography information for Claire Perry"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Claire Perry"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/241", "member" : [{"_about" : "http://data.parliament.uk/members/4503", "label" : {"_value" : "Biography information for Chris Philp"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Chris Philp"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/242", "member" : [{"_about" : "http://data.parliament.uk/members/4075", "label" : {"_value" : "Biography information for Christopher Pincher"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Christopher Pincher"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/243", "member" : [{"_about" : "http://data.parliament.uk/members/3932", "label" : {"_value" : "Biography information for Dr Dan Poulter"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Dan Poulter"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/244", "member" : [{"_about" : "http://data.parliament.uk/members/4401", "label" : {"_value" : "Biography information for Victoria Prentis"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Victoria Prentis"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/245", "member" : [{"_about" : "http://data.parliament.uk/members/1424", "label" : {"_value" : "Biography information for Mr Mark Prisk"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Mark Prisk"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/246", "member" : [{"_about" : "http://data.parliament.uk/members/1576", "label" : {"_value" : "Biography information for Mark Pritchard"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mark Pritchard"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/247", "member" : [{"_about" : "http://data.parliament.uk/members/4369", "label" : {"_value" : "Biography information for Tom Pursglove"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Tom Pursglove"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/248", "member" : [{"_about" : "http://data.parliament.uk/members/4507", "label" : {"_value" : "Biography information for Jeremy Quin"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jeremy Quin"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/249", "member" : [{"_about" : "http://data.parliament.uk/members/4423", "label" : {"_value" : "Biography information for Will Quince"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Will Quince"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/25", "member" : [{"_about" : "http://data.parliament.uk/members/4461", "label" : {"_value" : "Biography information for Stewart Malcolm McDonald"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Stewart Malcolm McDonald"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/250", "member" : [{"_about" : "http://data.parliament.uk/members/4007", "label" : {"_value" : "Biography information for Dominic Raab"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dominic Raab"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/251", "member" : [{"_about" : "http://data.parliament.uk/members/14", "label" : {"_value" : "Biography information for John Redwood"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "John Redwood"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/252", "member" : [{"_about" : "http://data.parliament.uk/members/4099", "label" : {"_value" : "Biography information for Mr Jacob Rees-Mogg"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Jacob Rees-Mogg"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/253", "member" : [{"_about" : "http://data.parliament.uk/members/253", "label" : {"_value" : "Biography information for Mr Laurence Robertson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Laurence Robertson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/254", "member" : [{"_about" : "http://data.parliament.uk/members/4406", "label" : {"_value" : "Biography information for Mary Robinson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mary Robinson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/255", "member" : [{"_about" : "http://data.parliament.uk/members/1447", "label" : {"_value" : "Biography information for Andrew Rosindell"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Rosindell"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/256", "member" : [{"_about" : "http://data.parliament.uk/members/4627", "label" : {"_value" : "Biography information for Douglas Ross"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Douglas Ross"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/257", "member" : [{"_about" : "http://data.parliament.uk/members/4652", "label" : {"_value" : "Biography information for Lee Rowley"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Lee Rowley"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/258", "member" : [{"_about" : "http://data.parliament.uk/members/3983", "label" : {"_value" : "Biography information for Amber Rudd"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Amber Rudd"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/259", "member" : [{"_about" : "http://data.parliament.uk/members/4033", "label" : {"_value" : "Biography information for David Rutley"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David Rutley"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/26", "member" : [{"_about" : "http://data.parliament.uk/members/4393", "label" : {"_value" : "Biography information for Stuart C. McDonald"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Stuart C. McDonald"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/260", "member" : [{"_about" : "http://data.parliament.uk/members/4506", "label" : {"_value" : "Biography information for Antoinette Sandbach"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Antoinette Sandbach"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/261", "member" : [{"_about" : "http://data.parliament.uk/members/4414", "label" : {"_value" : "Biography information for Paul Scully"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Paul Scully"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/262", "member" : [{"_about" : "http://data.parliament.uk/members/4681", "label" : {"_value" : "Biography information for Mr Bob Seely"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Bob Seely"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/263", "member" : [{"_about" : "http://data.parliament.uk/members/1453", "label" : {"_value" : "Biography information for Andrew Selous"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Selous"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/264", "member" : [{"_about" : "http://data.parliament.uk/members/4131", "label" : {"_value" : "Biography information for Jim Shannon"}
+    }
+    ], "memberParty" : "Democratic Unionist Party", "memberPrinted" : {"_value" : "Jim Shannon"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/265", "member" : [{"_about" : "http://data.parliament.uk/members/1582", "label" : {"_value" : "Biography information for Grant Shapps"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Grant Shapps"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/266", "member" : [{"_about" : "http://data.parliament.uk/members/4014", "label" : {"_value" : "Biography information for Alok Sharma"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alok Sharma"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/267", "member" : [{"_about" : "http://data.parliament.uk/members/3997", "label" : {"_value" : "Biography information for Alec Shelbrooke"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alec Shelbrooke"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/268", "member" : [{"_about" : "http://data.parliament.uk/members/126", "label" : {"_value" : "Biography information for Mr Keith Simpson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Keith Simpson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/269", "member" : [{"_about" : "http://data.parliament.uk/members/4021", "label" : {"_value" : "Biography information for Chris Skidmore"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Chris Skidmore"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/27", "member" : [{"_about" : "http://data.parliament.uk/members/4443", "label" : {"_value" : "Biography information for Carol Monaghan"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Carol Monaghan"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/270", "member" : [{"_about" : "http://data.parliament.uk/members/1609", "label" : {"_value" : "Biography information for Chloe Smith"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Chloe Smith"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/271", "member" : [{"_about" : "http://data.parliament.uk/members/3960", "label" : {"_value" : "Biography information for Henry Smith"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Henry Smith"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/272", "member" : [{"_about" : "http://data.parliament.uk/members/4118", "label" : {"_value" : "Biography information for Julian Smith"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Julian Smith"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/273", "member" : [{"_about" : "http://data.parliament.uk/members/4478", "label" : {"_value" : "Biography information for Royston Smith"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Royston Smith"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/274", "member" : [{"_about" : "http://data.parliament.uk/members/116", "label" : {"_value" : "Biography information for Sir Nicholas Soames"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Nicholas Soames"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/275", "member" : [{"_about" : "http://data.parliament.uk/members/312", "label" : {"_value" : "Biography information for Dame Caroline Spelman"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dame Caroline Spelman"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/276", "member" : [{"_about" : "http://data.parliament.uk/members/4055", "label" : {"_value" : "Biography information for Mark Spencer"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mark Spencer"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/277", "member" : [{"_about" : "http://data.parliament.uk/members/4044", "label" : {"_value" : "Biography information for Andrew Stephenson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Stephenson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/278", "member" : [{"_about" : "http://data.parliament.uk/members/3942", "label" : {"_value" : "Biography information for John Stevenson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "John Stevenson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/279", "member" : [{"_about" : "http://data.parliament.uk/members/4015", "label" : {"_value" : "Biography information for Iain Stewart"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Iain Stewart"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/28", "member" : [{"_about" : "http://data.parliament.uk/members/4656", "label" : {"_value" : "Biography information for Layla Moran"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Layla Moran"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/280", "member" : [{"_about" : "http://data.parliament.uk/members/4137", "label" : {"_value" : "Biography information for Rory Stewart"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Rory Stewart"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/281", "member" : [{"_about" : "http://data.parliament.uk/members/234", "label" : {"_value" : "Biography information for Mr Gary Streeter"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Gary Streeter"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/282", "member" : [{"_about" : "http://data.parliament.uk/members/3935", "label" : {"_value" : "Biography information for Mel Stride"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mel Stride"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/283", "member" : [{"_about" : "http://data.parliament.uk/members/1482", "label" : {"_value" : "Biography information for Graham Stuart"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Graham Stuart"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/284", "member" : [{"_about" : "http://data.parliament.uk/members/4079", "label" : {"_value" : "Biography information for Julian Sturdy"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Julian Sturdy"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/285", "member" : [{"_about" : "http://data.parliament.uk/members/4483", "label" : {"_value" : "Biography information for Rishi Sunak"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Rishi Sunak"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/286", "member" : [{"_about" : "http://data.parliament.uk/members/55", "label" : {"_value" : "Biography information for Sir Desmond Swayne"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Desmond Swayne"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/287", "member" : [{"_about" : "http://data.parliament.uk/members/1408", "label" : {"_value" : "Biography information for Sir Hugo Swire"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Hugo Swire"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/288", "member" : [{"_about" : "http://data.parliament.uk/members/245", "label" : {"_value" : "Biography information for Sir Robert Syms"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Robert Syms"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/289", "member" : [{"_about" : "http://data.parliament.uk/members/4532", "label" : {"_value" : "Biography information for Derek Thomas"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Derek Thomas"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/29", "member" : [{"_about" : "http://data.parliament.uk/members/4420", "label" : {"_value" : "Biography information for Gavin Newlands"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Gavin Newlands"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/290", "member" : [{"_about" : "http://data.parliament.uk/members/4599", "label" : {"_value" : "Biography information for Ross Thomson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Ross Thomson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/291", "member" : [{"_about" : "http://data.parliament.uk/members/4447", "label" : {"_value" : "Biography information for Maggie Throup"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Maggie Throup"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/292", "member" : [{"_about" : "http://data.parliament.uk/members/4105", "label" : {"_value" : "Biography information for Justin Tomlinson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Justin Tomlinson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/293", "member" : [{"_about" : "http://data.parliament.uk/members/4497", "label" : {"_value" : "Biography information for Michael Tomlinson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Michael Tomlinson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/294", "member" : [{"_about" : "http://data.parliament.uk/members/4509", "label" : {"_value" : "Biography information for Craig Tracey"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Craig Tracey"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/295", "member" : [{"_about" : "http://data.parliament.uk/members/335", "label" : {"_value" : "Biography information for David Tredinnick"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David Tredinnick"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/296", "member" : [{"_about" : "http://data.parliament.uk/members/4462", "label" : {"_value" : "Biography information for Tom Tugendhat"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Tom Tugendhat"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/297", "member" : [{"_about" : "http://data.parliament.uk/members/1496", "label" : {"_value" : "Biography information for Mr Shailesh Vara"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Shailesh Vara"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/298", "member" : [{"_about" : "http://data.parliament.uk/members/3957", "label" : {"_value" : "Biography information for Martin Vickers"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Martin Vickers"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/299", "member" : [{"_about" : "http://data.parliament.uk/members/1500", "label" : {"_value" : "Biography information for Theresa Villiers"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Theresa Villiers"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/3", "member" : [{"_about" : "http://data.parliament.uk/members/4417", "label" : {"_value" : "Biography information for Deidre Brock"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Deidre Brock"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/30", "member" : [{"_about" : "http://data.parliament.uk/members/4453", "label" : {"_value" : "Biography information for Tommy Sheppard"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Tommy Sheppard"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/300", "member" : [{"_about" : "http://data.parliament.uk/members/1493", "label" : {"_value" : "Biography information for Mr Charles Walker"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Charles Walker"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/301", "member" : [{"_about" : "http://data.parliament.uk/members/4091", "label" : {"_value" : "Biography information for Mr Robin Walker"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Robin Walker"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/302", "member" : [{"_about" : "http://data.parliament.uk/members/1539", "label" : {"_value" : "Biography information for Mr Ben Wallace"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Ben Wallace"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/303", "member" : [{"_about" : "http://data.parliament.uk/members/4526", "label" : {"_value" : "Biography information for David Warburton"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "David Warburton"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/304", "member" : [{"_about" : "http://data.parliament.uk/members/4361", "label" : {"_value" : "Biography information for Matt Warman"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Matt Warman"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/305", "member" : [{"_about" : "http://data.parliament.uk/members/4527", "label" : {"_value" : "Biography information for Helen Whately"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Helen Whately"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/306", "member" : [{"_about" : "http://data.parliament.uk/members/4053", "label" : {"_value" : "Biography information for Mrs Heather Wheeler"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mrs Heather Wheeler"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/307", "member" : [{"_about" : "http://data.parliament.uk/members/3940", "label" : {"_value" : "Biography information for Craig Whittaker"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Craig Whittaker"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/308", "member" : [{"_about" : "http://data.parliament.uk/members/39", "label" : {"_value" : "Biography information for Mr John Whittingdale"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr John Whittingdale"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/309", "member" : [{"_about" : "http://data.parliament.uk/members/1428", "label" : {"_value" : "Biography information for Bill Wiggin"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Bill Wiggin"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/31", "member" : [{"_about" : "http://data.parliament.uk/members/4463", "label" : {"_value" : "Biography information for Chris Stephens"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Chris Stephens"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/310", "member" : [{"_about" : "http://data.parliament.uk/members/4108", "label" : {"_value" : "Biography information for Gavin Williamson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Gavin Williamson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/311", "member" : [{"_about" : "http://data.parliament.uk/members/4073", "label" : {"_value" : "Biography information for Dr Sarah Wollaston"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Sarah Wollaston"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/312", "member" : [{"_about" : "http://data.parliament.uk/members/4384", "label" : {"_value" : "Biography information for Mike Wood"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mike Wood"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/313", "member" : [{"_about" : "http://data.parliament.uk/members/4429", "label" : {"_value" : "Biography information for Mr William Wragg"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr William Wragg"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/314", "member" : [{"_about" : "http://data.parliament.uk/members/1560", "label" : {"_value" : "Biography information for Jeremy Wright"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jeremy Wright"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/315", "member" : [{"_about" : "http://data.parliament.uk/members/4113", "label" : {"_value" : "Biography information for Nadhim Zahawi"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nadhim Zahawi"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/32", "member" : [{"_about" : "http://data.parliament.uk/members/1513", "label" : {"_value" : "Biography information for Jo Swinson"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Jo Swinson"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/33", "member" : [{"_about" : "http://data.parliament.uk/members/4430", "label" : {"_value" : "Biography information for Alison Thewliss"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Alison Thewliss"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/34", "member" : [{"_about" : "http://data.parliament.uk/members/4675", "label" : {"_value" : "Biography information for Kirstene Hair"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Kirstene Hair"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/35", "member" : [{"_about" : "http://data.parliament.uk/members/3985", "label" : {"_value" : "Biography information for Robert Halfon"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Robert Halfon"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/36", "member" : [{"_about" : "http://data.parliament.uk/members/4450", "label" : {"_value" : "Biography information for Luke Hall"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Luke Hall"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/37", "member" : [{"_about" : "http://data.parliament.uk/members/105", "label" : {"_value" : "Biography information for Mr Philip Hammond"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Philip Hammond"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/38", "member" : [{"_about" : "http://data.parliament.uk/members/1585", "label" : {"_value" : "Biography information for Stephen Hammond"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Stephen Hammond"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/39", "member" : [{"_about" : "http://data.parliament.uk/members/4070", "label" : {"_value" : "Biography information for Matt Hancock"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Matt Hancock"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/4", "member" : [{"_about" : "http://data.parliament.uk/members/207", "label" : {"_value" : "Biography information for Sir Vince Cable"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Sir Vince Cable"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/40", "member" : [{"_about" : "http://data.parliament.uk/members/1526", "label" : {"_value" : "Biography information for Greg Hands"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Greg Hands"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/41", "member" : [{"_about" : "http://data.parliament.uk/members/1520", "label" : {"_value" : "Biography information for Mr Mark Harper"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Mark Harper"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/42", "member" : [{"_about" : "http://data.parliament.uk/members/4068", "label" : {"_value" : "Biography information for Richard Harrington"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Richard Harrington"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/43", "member" : [{"_about" : "http://data.parliament.uk/members/3948", "label" : {"_value" : "Biography information for Rebecca Harris"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Rebecca Harris"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/44", "member" : [{"_about" : "http://data.parliament.uk/members/4593", "label" : {"_value" : "Biography information for Trudy Harrison"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Trudy Harrison"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/45", "member" : [{"_about" : "http://data.parliament.uk/members/350", "label" : {"_value" : "Biography information for Mr John Hayes"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr John Hayes"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/46", "member" : [{"_about" : "http://data.parliament.uk/members/69", "label" : {"_value" : "Biography information for Sir Oliver Heald"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Oliver Heald"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/47", "member" : [{"_about" : "http://data.parliament.uk/members/3977", "label" : {"_value" : "Biography information for Chris Heaton-Harris"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Chris Heaton-Harris"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/48", "member" : [{"_about" : "http://data.parliament.uk/members/4524", "label" : {"_value" : "Biography information for Peter Heaton-Jones"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Peter Heaton-Jones"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/49", "member" : [{"_about" : "http://data.parliament.uk/members/4050", "label" : {"_value" : "Biography information for Gordon Henderson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Gordon Henderson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/5", "member" : [{"_about" : "http://data.parliament.uk/members/4412", "label" : {"_value" : "Biography information for Dr Lisa Cameron"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Dr Lisa Cameron"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/50", "member" : [{"_about" : "http://data.parliament.uk/members/1479", "label" : {"_value" : "Biography information for Nick Herbert"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nick Herbert"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/51", "member" : [{"_about" : "http://data.parliament.uk/members/3969", "label" : {"_value" : "Biography information for Mr Damian Hinds"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Damian Hinds"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/52", "member" : [{"_about" : "http://data.parliament.uk/members/4494", "label" : {"_value" : "Biography information for Simon Hoare"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Simon Hoare"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/53", "member" : [{"_about" : "http://data.parliament.uk/members/4016", "label" : {"_value" : "Biography information for George Hollingbery"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "George Hollingbery"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/54", "member" : [{"_about" : "http://data.parliament.uk/members/4474", "label" : {"_value" : "Biography information for Kevin Hollinrake"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Kevin Hollinrake"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/55", "member" : [{"_about" : "http://data.parliament.uk/members/1537", "label" : {"_value" : "Biography information for Mr Philip Hollobone"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Philip Hollobone"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/56", "member" : [{"_about" : "http://data.parliament.uk/members/1606", "label" : {"_value" : "Biography information for John Howell"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "John Howell"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/57", "member" : [{"_about" : "http://data.parliament.uk/members/4407", "label" : {"_value" : "Biography information for Nigel Huddleston"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Nigel Huddleston"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/58", "member" : [{"_about" : "http://data.parliament.uk/members/4635", "label" : {"_value" : "Biography information for Eddie Hughes"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Eddie Hughes"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/59", "member" : [{"_about" : "http://data.parliament.uk/members/1561", "label" : {"_value" : "Biography information for Mr Nick Hurd"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Nick Hurd"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/6", "member" : [{"_about" : "http://data.parliament.uk/members/4402", "label" : {"_value" : "Biography information for Douglas Chapman"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Douglas Chapman"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/60", "member" : [{"_about" : "http://data.parliament.uk/members/4619", "label" : {"_value" : "Biography information for Mr Alister Jack"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Alister Jack"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/61", "member" : [{"_about" : "http://data.parliament.uk/members/4115", "label" : {"_value" : "Biography information for Margot James"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Margot James"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/62", "member" : [{"_about" : "http://data.parliament.uk/members/40", "label" : {"_value" : "Biography information for Mr Bernard Jenkin"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Bernard Jenkin"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/63", "member" : [{"_about" : "http://data.parliament.uk/members/4490", "label" : {"_value" : "Biography information for Andrea Jenkyns"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrea Jenkyns"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/64", "member" : [{"_about" : "http://data.parliament.uk/members/4320", "label" : {"_value" : "Biography information for Robert Jenrick"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Robert Jenrick"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/65", "member" : [{"_about" : "http://data.parliament.uk/members/1423", "label" : {"_value" : "Biography information for Boris Johnson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Boris Johnson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/66", "member" : [{"_about" : "http://data.parliament.uk/members/4592", "label" : {"_value" : "Biography information for Dr Caroline Johnson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Caroline Johnson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/67", "member" : [{"_about" : "http://data.parliament.uk/members/3970", "label" : {"_value" : "Biography information for Gareth Johnson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Gareth Johnson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/68", "member" : [{"_about" : "http://data.parliament.uk/members/4039", "label" : {"_value" : "Biography information for Joseph Johnson"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Joseph Johnson"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/69", "member" : [{"_about" : "http://data.parliament.uk/members/3996", "label" : {"_value" : "Biography information for Andrew Jones"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Jones"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/7", "member" : [{"_about" : "http://data.parliament.uk/members/188", "label" : {"_value" : "Biography information for Sir Edward Davey"}
+    }
+    ], "memberParty" : "Liberal Democrat", "memberPrinted" : {"_value" : "Sir Edward Davey"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/70", "member" : [{"_about" : "http://data.parliament.uk/members/1502", "label" : {"_value" : "Biography information for Mr David Jones"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr David Jones"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/71", "member" : [{"_about" : "http://data.parliament.uk/members/4024", "label" : {"_value" : "Biography information for Mr Marcus Jones"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Marcus Jones"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/72", "member" : [{"_about" : "http://data.parliament.uk/members/1566", "label" : {"_value" : "Biography information for Daniel Kawczynski"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Daniel Kawczynski"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/73", "member" : [{"_about" : "http://data.parliament.uk/members/4680", "label" : {"_value" : "Biography information for Gillian Keegan"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Gillian Keegan"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/74", "member" : [{"_about" : "http://data.parliament.uk/members/4455", "label" : {"_value" : "Biography information for Seema Kennedy"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Seema Kennedy"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/75", "member" : [{"_about" : "http://data.parliament.uk/members/4604", "label" : {"_value" : "Biography information for Stephen Kerr"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Stephen Kerr"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/76", "member" : [{"_about" : "http://data.parliament.uk/members/1200", "label" : {"_value" : "Biography information for Sir Greg Knight"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Greg Knight"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/77", "member" : [{"_about" : "http://data.parliament.uk/members/4134", "label" : {"_value" : "Biography information for Kwasi Kwarteng"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Kwasi Kwarteng"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/78", "member" : [{"_about" : "http://data.parliament.uk/members/4608", "label" : {"_value" : "Biography information for John Lamont"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "John Lamont"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/79", "member" : [{"_about" : "http://data.parliament.uk/members/1544", "label" : {"_value" : "Biography information for Mark Lancaster"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mark Lancaster"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/8", "member" : [{"_about" : "http://data.parliament.uk/members/4488", "label" : {"_value" : "Biography information for Martyn Day"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Martyn Day"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/80", "member" : [{"_about" : "http://data.parliament.uk/members/4025", "label" : {"_value" : "Biography information for Mrs Pauline Latham"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mrs Pauline Latham"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/81", "member" : [{"_about" : "http://data.parliament.uk/members/4117", "label" : {"_value" : "Biography information for Andrea Leadsom"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrea Leadsom"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/82", "member" : [{"_about" : "http://data.parliament.uk/members/3921", "label" : {"_value" : "Biography information for Dr Phillip Lee"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Dr Phillip Lee"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/83", "member" : [{"_about" : "http://data.parliament.uk/members/4109", "label" : {"_value" : "Biography information for Jeremy Lefroy"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Jeremy Lefroy"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/84", "member" : [{"_about" : "http://data.parliament.uk/members/345", "label" : {"_value" : "Biography information for Sir Edward Leigh"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Edward Leigh"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/85", "member" : [{"_about" : "http://data.parliament.uk/members/247", "label" : {"_value" : "Biography information for Sir Oliver Letwin"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Oliver Letwin"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/86", "member" : [{"_about" : "http://data.parliament.uk/members/4659", "label" : {"_value" : "Biography information for Andrew Lewer"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Andrew Lewer"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/87", "member" : [{"_about" : "http://data.parliament.uk/members/4009", "label" : {"_value" : "Biography information for Brandon Lewis"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Brandon Lewis"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/88", "member" : [{"_about" : "http://data.parliament.uk/members/1396", "label" : {"_value" : "Biography information for Mr Ian Liddell-Grainger"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mr Ian Liddell-Grainger"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/89", "member" : [{"_about" : "http://data.parliament.uk/members/114", "label" : {"_value" : "Biography information for Tim Loughton"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Tim Loughton"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/9", "member" : [{"_about" : "http://data.parliament.uk/members/4374", "label" : {"_value" : "Biography information for Martin Docherty-Hughes"}
+    }
+    ], "memberParty" : "Scottish National Party", "memberPrinted" : {"_value" : "Martin Docherty-Hughes"}
+    , "type" : "http://data.parliament.uk/schema/parl#AyeVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/90", "member" : [{"_about" : "http://data.parliament.uk/members/4529", "label" : {"_value" : "Biography information for Craig Mackinlay"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Craig Mackinlay"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/91", "member" : [{"_about" : "http://data.parliament.uk/members/4668", "label" : {"_value" : "Biography information for Rachel Maclean"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Rachel Maclean"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/92", "member" : [{"_about" : "http://data.parliament.uk/members/1568", "label" : {"_value" : "Biography information for Mrs Anne Main"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Mrs Anne Main"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/93", "member" : [{"_about" : "http://data.parliament.uk/members/4484", "label" : {"_value" : "Biography information for Alan Mak"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Alan Mak"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/94", "member" : [{"_about" : "http://data.parliament.uk/members/4495", "label" : {"_value" : "Biography information for Kit Malthouse"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Kit Malthouse"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/95", "member" : [{"_about" : "http://data.parliament.uk/members/4496", "label" : {"_value" : "Biography information for Scott Mann"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Scott Mann"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/96", "member" : [{"_about" : "http://data.parliament.uk/members/4625", "label" : {"_value" : "Biography information for Paul Masterton"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Paul Masterton"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/97", "member" : [{"_about" : "http://data.parliament.uk/members/3926", "label" : {"_value" : "Biography information for Paul Maynard"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Paul Maynard"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/98", "member" : [{"_about" : "http://data.parliament.uk/members/333", "label" : {"_value" : "Biography information for Sir Patrick McLoughlin"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Sir Patrick McLoughlin"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  , {"_about" : "http://data.parliament.uk/resources/837690/vote/99", "member" : [{"_about" : "http://data.parliament.uk/members/4084", "label" : {"_value" : "Biography information for Esther McVey"}
+    }
+    ], "memberParty" : "Conservative", "memberPrinted" : {"_value" : "Esther McVey"}
+    , "type" : "http://data.parliament.uk/schema/parl#NoVote"}
+  ]}
+, "type" : ["http://purl.org/linked-data/api/vocab#ItemEndpoint", "http://purl.org/linked-data/api/vocab#Page"]}
+}
