@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 progressCardView.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     if (task.isSuccessful()) {
-                        addUserToDatabase();
+                        //addUserToDatabase();
                         finish();
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     }

@@ -38,6 +38,7 @@ import com.parliamentary.androidapp.tasks.GetMpNameTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static android.widget.AbsListView.OnScrollListener;
 
@@ -79,24 +80,28 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         mainListView.setOnScrollListener(this);
 
         // Update Ui
-        getPostcodeFromDatabase();
+        getUserMpFromDatabase();
     }
 
-    private void getPostcodeFromDatabase() {
+    private void getUserMpFromDatabase() {
         progressCardView.setVisibility(View.VISIBLE);
-        progressBarText.setText("Getting User Postcode...");
+        progressBarText.setText("Getting User Saved Mp...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("postcode");
+        final DatabaseReference myRef = database.getReference("users");
 
         // Read from the database
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String dataValue = dataSnapshot.getValue(String.class);
-                if (dataValue != null && (!TextUtils.equals(dataValue, "null")) && (!TextUtils.isEmpty(dataValue))) {
-                    postcode = dataValue;
-                    getNewMP();
+                if (dataSnapshot.child(user.getUid()).exists() && dataSnapshot.child(user.getUid()).child("mp").exists()) {
+                    mpParliamentProfile = new MpParliamentProfile();
+                    mpParliamentProfile.Name = dataSnapshot.child(user.getUid()).child("mp").child("name").getValue(String.class);
+                    mpParliamentProfile.CommonsConstituency = dataSnapshot.child(user.getUid()).child("mp").child("commonsConstituency").getValue(String.class);
+                    mpParliamentProfile.CommonsParty = dataSnapshot.child(user.getUid()).child("mp").child("commonsParty").getValue(String.class);
+                    mpParliamentProfile.MemberImg = dataSnapshot.child(user.getUid()).child("mp").child("memberImg").getValue(String.class);
+                    displayMP();
+                    getFavourites();
                 } else {
                     askUserForPostCode();
                 }
@@ -110,11 +115,34 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         });
     }
 
-    private void savePostcodetoDatabase() {
+    private void saveUserMpToDatabase() {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("postcode");
-        myRef.setValue(postcode);
+        final DatabaseReference myRef = database.getReference("users");
+
+        // Read from the database
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.child(user.getUid()).exists() && !dataSnapshot.child(user.getUid()).child("mp").exists()) {
+                    Map<String, Object> mp = new HashMap<>();
+                    mp.put("name", mpParliamentProfile.Name);
+                    mp.put("commonsConstituency", mpParliamentProfile.CommonsConstituency);
+                    mp.put("commonsParty", mpParliamentProfile.CommonsParty);
+                    mp.put("memberImg", mpParliamentProfile.MemberImg);
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("mp", mp);
+                    myRef.child(user.getUid()).setValue(childUpdates);
+                }
+                getMPCommonsDivisions();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     private void updateContent() {
@@ -189,15 +217,20 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
             @Override
             public void processFinish(Object output) {
                 mpParliamentProfile = (MpParliamentProfile) output;
-                ((TextView) findViewById(R.id.textViewMpName)).setText(mpParliamentProfile.Name);
-                ((TextView) findViewById(R.id.text_commonsconstituency)).setText(mpParliamentProfile.CommonsConstituency);
-                ((TextView) findViewById(R.id.text_commonsparty)).setText(mpParliamentProfile.CommonsParty);
-                new DownloadImageTask((ImageView) findViewById(R.id.image_member))
-                        .execute(mpParliamentProfile.MemberImg);
+                displayMP();
+                saveUserMpToDatabase();
                 getFavourites();
             }
         });
         asyncTask.execute(postcode);
+    }
+
+    private void displayMP() {
+        ((TextView) findViewById(R.id.textViewMpName)).setText(mpParliamentProfile.Name);
+        ((TextView) findViewById(R.id.text_commonsconstituency)).setText(mpParliamentProfile.CommonsConstituency);
+        ((TextView) findViewById(R.id.text_commonsparty)).setText(mpParliamentProfile.CommonsParty);
+        new DownloadImageTask((ImageView) findViewById(R.id.image_member))
+                .execute(mpParliamentProfile.MemberImg);
     }
 
     private void askUserForPostCode() {
@@ -230,7 +263,6 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
     private void checkPostcode(String input) {
         if (input.matches("([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([AZa-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))[0-9][A-Za-z]{2})")) {
             postcode = input;
-            savePostcodetoDatabase();
             getNewMP();
         } else {
             Toast.makeText(MpActivity.this, "Invalid postcode please check you typed it correctly.", Toast.LENGTH_SHORT).show();
