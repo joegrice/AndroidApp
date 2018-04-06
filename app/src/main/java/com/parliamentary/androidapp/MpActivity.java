@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
@@ -149,7 +148,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
 
     private void getFavourites() {
         progressCardView.setVisibility(View.VISIBLE);
-        progressBarText.setText("Getting User Favourites...");
+        progressBarText.setText("Checking User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
@@ -179,7 +178,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
     private void addMPCommonsDivisions() {
         progressCardView.setVisibility(View.VISIBLE);
         progressBarText.setText("Updating Mp Commons Divisions...");
-        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(new AsyncResponse() {
+        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(progressBarText, new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
@@ -193,7 +192,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
 
     private void getMPCommonsDivisions() {
         progressBarText.setText("Getting Mp Commons Divisions...");
-        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(new AsyncResponse() {
+        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(progressBarText, new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {

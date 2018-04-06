@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
 
     private void getFavourites() {
         progressCardView.setVisibility(View.VISIBLE);
-        progressBarText.setText("Getting User Favourites...");
+        progressBarText.setText("Checking User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(user.getUid()).child("favourites");
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
 
     private void getListCommonsDivisions() {
         progressBarText.setText("Getting Commons Divisions...");
-        GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(new AsyncResponse() {
+        GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(progressBarText, new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
     private void addListCommonsDivisions() {
         progressCardView.setVisibility(View.VISIBLE);
         progressBarText.setText("Updating Commons Divisions...");
-        GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(new AsyncResponse() {
+        GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(progressBarText, new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {

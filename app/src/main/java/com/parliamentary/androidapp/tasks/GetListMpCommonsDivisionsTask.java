@@ -2,7 +2,9 @@ package com.parliamentary.androidapp.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.parliamentary.androidapp.R;
 import com.parliamentary.androidapp.helpers.HttpHandler;
 import com.parliamentary.androidapp.MainActivity;
 import com.parliamentary.androidapp.data.AsyncResponse;
@@ -28,14 +30,17 @@ public class GetListMpCommonsDivisionsTask extends AsyncTask<Object, Object, Obj
     private String TAG = MainActivity.class.getSimpleName();
     public AsyncResponse delegate = null;
     private MpParliamentProfile mpParliamentProfile;
+    private TextView progressBarText;
 
-    public GetListMpCommonsDivisionsTask(AsyncResponse delegate) {
+    public GetListMpCommonsDivisionsTask(TextView progressBarText, AsyncResponse delegate) {
         this.delegate = delegate;
+        this.progressBarText = progressBarText;
     }
 
     @Override
     protected void onProgressUpdate(Object... values) {
         super.onProgressUpdate(values);
+        progressBarText.setText((String) values[0]);
     }
 
     @Override
@@ -80,6 +85,7 @@ public class GetListMpCommonsDivisionsTask extends AsyncTask<Object, Object, Obj
             if (commonsDivision.MpVote != null && !commonsDivision.MpVote.isEmpty()
                      && !commonsDivision.MpVote.equals("null")) {
                 commonsDivisions.add(commonsDivision);
+                publishProgress("Commons Divisions Found: " + commonsDivisions.size());
             }
         }
         return commonsDivisions;

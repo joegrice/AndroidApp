@@ -2,6 +2,7 @@ package com.parliamentary.androidapp.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.parliamentary.androidapp.helpers.HttpHandler;
 import com.parliamentary.androidapp.MainActivity;
@@ -28,14 +29,17 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
 
     private String TAG = MainActivity.class.getSimpleName();
     public AsyncResponse delegate = null;
+    private TextView progressBarText;
 
-    public GetListCommonsDivisionsTask(AsyncResponse delegate) {
+    public GetListCommonsDivisionsTask(TextView progressBarText, AsyncResponse delegate) {
         this.delegate = delegate;
+        this.progressBarText = progressBarText;
     }
 
     @Override
     protected void onProgressUpdate(Object... values) {
         super.onProgressUpdate(values);
+        progressBarText.setText((String) values[0]);
     }
 
     @Override
@@ -77,6 +81,7 @@ public class GetListCommonsDivisionsTask extends AsyncTask<Object, Object, Objec
             JSONObject itemObj = new JSONObject(json);
             CommonsDivision commonsDivision = new CommonsDivision(itemObj, favourites);
             commonsDivisions.add(commonsDivision);
+            publishProgress("Commons Divisions Found: " + commonsDivisions.size());
         }
         return commonsDivisions;
     }
