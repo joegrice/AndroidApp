@@ -77,7 +77,10 @@ public class GetListMpCommonsDivisionsTask extends AsyncTask<Object, Object, Obj
             String json = httpHandler.makeServiceCall(divisionUrl);
             JSONObject itemObj = new JSONObject(json);
             CommonsDivision commonsDivision = new CommonsDivision(itemObj, favourites, mpParliamentProfile);
-            commonsDivisions.add(commonsDivision);
+            if (commonsDivision.MpVote != null && !commonsDivision.MpVote.isEmpty()
+                     && !commonsDivision.MpVote.equals("null")) {
+                commonsDivisions.add(commonsDivision);
+            }
         }
         return commonsDivisions;
     }
