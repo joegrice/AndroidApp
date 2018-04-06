@@ -34,7 +34,6 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String TAG = this.getClass().getSimpleName();
     private EditText editTextEmail;
     private EditText editTextPassword;
     private CardView progressCardView;
@@ -86,35 +85,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 progressCardView.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     if (task.isSuccessful()) {
-                        //addUserToDatabase();
                         finish();
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     }
                 } else {
                     Toast.makeText(RegisterActivity.this, "Could not register... please try again", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-    }
-
-    private void addUserToDatabase() {
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("users");
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.child(user.getUid()).exists()) {
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put("postcode", "");
-                    myRef.child(user.getUid()).setValue(childUpdates);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "Failed to remove value.", databaseError.toException());
             }
         });
     }

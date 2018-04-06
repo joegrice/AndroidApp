@@ -94,7 +94,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(user.getUid()).exists() && dataSnapshot.child(user.getUid()).child("mp").exists()) {
+                if (dataSnapshot.child(user.getUid()).child("mp").exists()) {
                     mpParliamentProfile = new MpParliamentProfile();
                     mpParliamentProfile.Name = dataSnapshot.child(user.getUid()).child("mp").child("name").getValue(String.class);
                     mpParliamentProfile.CommonsConstituency = dataSnapshot.child(user.getUid()).child("mp").child("commonsConstituency").getValue(String.class);
@@ -124,17 +124,14 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.child(user.getUid()).exists() && !dataSnapshot.child(user.getUid()).child("mp").exists()) {
+                if (!dataSnapshot.child(user.getUid()).child("mp").exists()) {
                     Map<String, Object> mp = new HashMap<>();
                     mp.put("name", mpParliamentProfile.Name);
                     mp.put("commonsConstituency", mpParliamentProfile.CommonsConstituency);
                     mp.put("commonsParty", mpParliamentProfile.CommonsParty);
                     mp.put("memberImg", mpParliamentProfile.MemberImg);
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put("mp", mp);
-                    myRef.child(user.getUid()).setValue(childUpdates);
+                    myRef.child(user.getUid()).child("mp").setValue(mp);
                 }
-                getMPCommonsDivisions();
             }
 
             @Override
