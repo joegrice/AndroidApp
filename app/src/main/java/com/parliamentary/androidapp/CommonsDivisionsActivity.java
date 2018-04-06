@@ -29,7 +29,7 @@ public class CommonsDivisionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commons_divisions);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        spinner = (ProgressBar) findViewById(R.id.progressBar);
+        spinner = findViewById(R.id.progressBar);
         displayData();
     }
 
@@ -42,7 +42,7 @@ public class CommonsDivisionsActivity extends AppCompatActivity {
     private void displayData() {
         spinner.setVisibility(View.VISIBLE);
         CommonsDivision commonsDivision = getCommonsDivision();
-        TextView title = (TextView) findViewById(R.id.text_cd_title);
+        TextView title = findViewById(R.id.text_cd_title);
         title.setText(commonsDivision.Title);
         setUpAyePieChart(commonsDivision);
         setUpNoPieChart(commonsDivision);
@@ -58,7 +58,7 @@ public class CommonsDivisionsActivity extends AppCompatActivity {
     }
 
     public void setUpAyePieChart(CommonsDivision commonsDivision) {
-        PieChart pieChart = (PieChart) findViewById(R.id.ayePieChart);
+        PieChart pieChart = findViewById(R.id.ayePieChart);
         ArrayList<PieEntry> ayePieEntries = getAyeValues(commonsDivision);
         PieDataSet pieDataSet = new PieDataSet(ayePieEntries, "");
         PieData pieData = new PieData(pieDataSet);
@@ -79,7 +79,7 @@ public class CommonsDivisionsActivity extends AppCompatActivity {
     }
 
     public void setUpNoPieChart(CommonsDivision commonsDivision) {
-        PieChart pieChart = (PieChart) findViewById(R.id.noPieChart);
+        PieChart pieChart = findViewById(R.id.noPieChart);
         ArrayList<PieEntry> noPieEntries = getNoValues(commonsDivision);
         PieDataSet pieDataSet = new PieDataSet(noPieEntries, "");
         PieData pieData = new PieData(pieDataSet);
