@@ -1,6 +1,12 @@
-package com.parliamentary.androidapp.models;
+package com.parliamentary.androidapp;
+
+import com.parliamentary.androidapp.helpers.CommonsDivisionFactory;
+import com.parliamentary.androidapp.models.CommonsDivision;
+import com.parliamentary.androidapp.models.MpParliamentProfile;
+import com.parliamentary.androidapp.models.VoteOptions;
 
 import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -16,24 +22,6 @@ import static org.junit.Assert.assertNotNull;
  */
 public class CommonsDivisionTest {
 
-    private JSONObject getJsonObject() throws Exception {
-        InputStream in = this.getClass().getClassLoader().getResourceAsStream("commonsDivisionExample.json");
-        BufferedReader r = new BufferedReader(new InputStreamReader(in));
-        StringBuilder total = new StringBuilder();
-        String line;
-        while ((line = r.readLine()) != null) {
-            total.append(line).append('\n');
-        }
-        return new JSONObject(total.toString());
-    }
-
-    private HashMap<String, Long> getFavourites() throws Exception {
-        HashMap<String, Long> favourites = new HashMap<>();
-        favourites.put("-L5Oyan4hKLyBeZq_4U1", new Long(838200));
-        favourites.put("-L5OywvdVM0Vi3tmduQJ", new Long(838186));
-        return favourites;
-    }
-
     private MpParliamentProfile createMpParliamentProfile() {
         MpParliamentProfile mpParliamentProfile = new MpParliamentProfile();
         mpParliamentProfile.CommonsConstituency = "Amber Valley";
@@ -44,8 +32,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CreateCommonsDivision() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertNotNull(commonsDivision);
@@ -53,8 +42,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckId() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertEquals(commonsDivision.Id, new Long(837690));
@@ -62,8 +52,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckIsFavourite() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertEquals(commonsDivision.Favourite, false);
@@ -71,8 +62,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckAyeVotesCount() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertEquals(commonsDivision.AyeVotes, 33);
@@ -80,8 +72,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckNoVotesCount() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertEquals(commonsDivision.NoVotes, 282);
@@ -89,8 +82,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckTitle() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertEquals(commonsDivision.Title, "Space Industry Bill: Report Stage Amdt 1");
@@ -98,8 +92,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckDate() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertEquals(commonsDivision.Date, "2018-02-06");
@@ -107,8 +102,9 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckUrl() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites);
 
         assertEquals(commonsDivision.Url, "http://eldaddp.azurewebsites.net/commonsdivisions/id/837690.json");
@@ -116,11 +112,12 @@ public class CommonsDivisionTest {
 
     @Test
     public void CheckMpVote() throws Exception {
-        JSONObject jsonObject = getJsonObject();
-        HashMap<String, Long> favourites = getFavourites();
+        CommonsDivisionFactory commonsDivisionFactory = new CommonsDivisionFactory();
+        JSONObject jsonObject = commonsDivisionFactory.getJsonObject();
+        HashMap<String, Long> favourites = commonsDivisionFactory.getFavourites();
         MpParliamentProfile mpParliamentProfile = createMpParliamentProfile();
         CommonsDivision commonsDivision = new CommonsDivision(jsonObject, favourites, mpParliamentProfile);
 
-        assertEquals(commonsDivision.MpVote, VoteOptions.NoVote);
+        Assert.assertEquals(commonsDivision.MpVote, VoteOptions.NoVote);
     }
 }
