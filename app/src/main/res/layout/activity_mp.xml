@@ -9,11 +9,12 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="125dp"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/mp_bg_layout">
 
         <ImageView
             android:id="@+id/image_member"
@@ -52,7 +53,6 @@
         android:layout_above="@+id/navigation"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
         android:filterTouchesWhenObscured="false" />
 
     <android.support.design.widget.BottomNavigationView
