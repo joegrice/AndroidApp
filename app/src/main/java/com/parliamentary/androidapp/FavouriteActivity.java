@@ -34,7 +34,7 @@ import static android.support.design.widget.BottomNavigationView.VISIBLE;
 public class FavouriteActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-    private CardView progressCardView;
+    private View favProgressBar;
     private TextView progressBarText;
     private String TAG = FavouriteActivity.class.getSimpleName();
 
@@ -50,8 +50,7 @@ public class FavouriteActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        View favProgressBar = findViewById(R.id.favouriteProgressBar);
-        progressCardView = favProgressBar.findViewById(R.id.progressBarCard);
+        favProgressBar = findViewById(R.id.favouriteProgressBar);
         progressBarText = favProgressBar.findViewById(R.id.progressBarText);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationHelper(this);
@@ -62,7 +61,7 @@ public class FavouriteActivity extends AppCompatActivity {
     }
 
     private void getFavourites() {
-        progressCardView.setVisibility(VISIBLE);
+        favProgressBar.setVisibility(VISIBLE);
         progressBarText.setText("Getting User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -78,7 +77,7 @@ public class FavouriteActivity extends AppCompatActivity {
                     TextView favInfoTextView = findViewById(R.id.favInfoTextView);
                     favInfoTextView.setText("No favourites found");
                     favInfoTextView.setVisibility(VISIBLE);
-                    progressCardView.setVisibility(GONE);
+                    favProgressBar.setVisibility(GONE);
                     return;
                 }
                 GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {
@@ -112,7 +111,7 @@ public class FavouriteActivity extends AppCompatActivity {
                 ListView listView = findViewById(R.id.favouritesListView);
                 CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, firebaseAuth, commonsDivisions);
                 listView.setAdapter(adapter);
-                progressCardView.setVisibility(GONE);
+                favProgressBar.setVisibility(GONE);
             }
         });
         asyncTask.execute(favourites);
