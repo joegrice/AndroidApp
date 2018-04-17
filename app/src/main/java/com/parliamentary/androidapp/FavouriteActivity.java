@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -48,8 +49,10 @@ public class FavouriteActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        progressCardView = findViewById(R.id.favProgressCardView);
-        progressBarText = findViewById(R.id.favProgressBarText);
+
+        View favProgressBar = findViewById(R.id.favouriteProgressBar);
+        progressCardView = favProgressBar.findViewById(R.id.progressBarCard);
+        progressBarText = favProgressBar.findViewById(R.id.progressBarText);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationHelper(this);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);

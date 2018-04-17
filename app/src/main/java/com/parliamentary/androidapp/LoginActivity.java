@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private CardView progressCardView;
+    private View loginProgressBar;
     private TextView progressBarText;
     private FirebaseAuth mAuth;
 
@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         TextView textViewSignUp = findViewById(R.id.textViewSignUp);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
-        progressBarText = findViewById(R.id.loginProgressBarText);
-        progressCardView = findViewById(R.id.loginProgressCardView);
+        loginProgressBar = findViewById(R.id.loginProgressBar);
+        progressBarText = loginProgressBar.findViewById(R.id.progressBarText);
 
         buttonSignIn.setOnClickListener(this);
         textViewSignUp.setOnClickListener(this);
@@ -66,13 +66,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        progressCardView.setVisibility(View.VISIBLE);
+        loginProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Logging User In...");
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressCardView.setVisibility(View.GONE);
+                loginProgressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     finish();
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));

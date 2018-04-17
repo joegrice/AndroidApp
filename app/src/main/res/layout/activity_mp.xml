@@ -7,13 +7,14 @@
     tools:context="com.parliamentary.androidapp.MpActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/mpLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="125dp"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:padding="5dp"
         android:orientation="horizontal"
+        android:visibility="invisible"
         android:background="@drawable/mp_bg_layout">
 
         <ImageView
@@ -51,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_below="@+id/mpLinearLayout"
         android:layout_centerHorizontal="true"
         android:filterTouchesWhenObscured="false" />
 
@@ -66,38 +67,13 @@
         tools:layout_editor_absoluteX="333dp"
         tools:layout_editor_absoluteY="33dp" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/mpProgressCardView"
+    <include
+        android:id="@+id/mpProgressBar"
+        layout="@layout/progress_bar_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_gravity="center_vertical"
-        android:visibility="gone"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ProgressBar
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp" />
-
-            <TextView
-                android:id="@+id/mpProgressBarText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp" />
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
+        android:visibility="gone" />
 
 </RelativeLayout>
 

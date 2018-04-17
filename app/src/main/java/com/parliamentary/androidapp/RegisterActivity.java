@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private CardView progressCardView;
+    private View registerProgressBar;
     private TextView progressBarText;
     private FirebaseAuth firebaseAuth;
 
@@ -55,8 +55,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         TextView textViewSignin = findViewById(R.id.textViewSignIn);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
-        progressCardView = findViewById(R.id.regProgressCardView);
-        progressBarText = findViewById(R.id.regProgressBarText);
+        registerProgressBar = findViewById(R.id.registerProgressBar);
+        progressBarText = registerProgressBar.findViewById(R.id.progressBarText);
 
         buttonRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
@@ -76,13 +76,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        progressCardView.setVisibility(View.VISIBLE);
+        registerProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Registering User...");
 
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressCardView.setVisibility(View.GONE);
+                registerProgressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     if (task.isSuccessful()) {
                         finish();

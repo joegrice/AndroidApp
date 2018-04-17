@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -52,7 +53,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
     private HashMap<String, Long> favourites;
     private MpParliamentProfile mpParliamentProfile;
     private boolean mFlagOnScrollBeingProcessed;
-    private CardView progressCardView;
+    private View mpProgressBar;
     private TextView progressBarText;
 
     @Override
@@ -69,8 +70,8 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
 
         // Initialise variables
         mpVotedList = findViewById(R.id.mpVotedList);
-        progressCardView = findViewById(R.id.mpProgressCardView);
-        progressBarText = findViewById(R.id.mpProgressBarText);
+        mpProgressBar = findViewById(R.id.mpProgressBar);
+        progressBarText = mpProgressBar.findViewById(R.id.progressBarText);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationHelper(this);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
@@ -83,7 +84,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
     }
 
     private void getUserMpFromDatabase() {
-        progressCardView.setVisibility(View.VISIBLE);
+        mpProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Getting User Saved Mp...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -147,7 +148,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
     }
 
     private void getFavourites() {
-        progressCardView.setVisibility(View.VISIBLE);
+        mpProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Checking User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -176,7 +177,9 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
     }
 
     private void addMPCommonsDivisions() {
-        progressCardView.setVisibility(View.VISIBLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        mpProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Updating Mp Commons Divisions...");
         GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(progressBarText, new AsyncResponse() {
 
@@ -184,7 +187,9 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
             public void processFinish(Object output) {
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
                 adapter.addAll(commonsDivisions);
-                progressCardView.setVisibility(View.GONE);
+                mFlagOnScrollBeingProcessed = false;
+                mpProgressBar.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
         });
         asyncTask.execute(mpParliamentProfile, favourites, pageNumber);
@@ -200,7 +205,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
                 adapter = new MpCommonsDivisionsAdapter(MpActivity.this, firebaseAuth, commonsDivisions);
                 ListView listView = mpVotedList;
                 listView.setAdapter(adapter);
-                progressCardView.setVisibility(View.GONE);
+                mpProgressBar.setVisibility(View.GONE);
             }
         });
         asyncTask.execute(mpParliamentProfile, favourites, pageNumber);
@@ -222,6 +227,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
     }
 
     private void displayMP() {
+        findViewById(R.id.mpLinearLayout).setVisibility(View.VISIBLE);
         ((TextView) findViewById(R.id.textViewMpName)).setText(mpParliamentProfile.Name);
         ((TextView) findViewById(R.id.text_commonsconstituency)).setText(mpParliamentProfile.CommonsConstituency);
         ((TextView) findViewById(R.id.text_commonsparty)).setText(mpParliamentProfile.CommonsParty);

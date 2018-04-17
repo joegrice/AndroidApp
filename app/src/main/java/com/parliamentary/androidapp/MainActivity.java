@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
     private String TAG = MpActivity.class.getSimpleName();
     private FirebaseAuth firebaseAuth;
     private TextView progressBarText;
-    private CardView progressCardView;
+    private View mainProgressBar;
     private int pageNumber;
     private HashMap<String, Long> favourites;
     private CommonsDivisionsAdapter adapter;
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
         }
 
         // Initialise variables
-        progressBarText = findViewById(R.id.mainProgressBarText);
-        progressCardView = findViewById(R.id.mainProgressCardView);
+        mainProgressBar = findViewById(R.id.mainProgressBar);
+        progressBarText = mainProgressBar.findViewById(R.id.progressBarText);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationHelper(this);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
     }
 
     private void getFavourites() {
-        progressCardView.setVisibility(View.VISIBLE);
+        mainProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Checking User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -113,14 +114,16 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
                 ListView listView = findViewById(R.id.mainListView);
                 listView.setAdapter(adapter);
                 mFlagOnScrollBeingProcessed = false;
-                progressCardView.setVisibility(View.GONE);
+                mainProgressBar.setVisibility(View.GONE);
             }
         });
         asyncTask.execute(pageNumber, favourites);
     }
 
     private void addListCommonsDivisions() {
-        progressCardView.setVisibility(View.VISIBLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        mainProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Updating Commons Divisions...");
         GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(progressBarText, new AsyncResponse() {
 
@@ -129,7 +132,8 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
                 ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
                 adapter.addAll(commonsDivisions);
                 mFlagOnScrollBeingProcessed = false;
-                progressCardView.setVisibility(View.GONE);
+                mainProgressBar.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
         });
         asyncTask.execute(pageNumber, favourites);
