@@ -4,13 +4,19 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.zip.GZIPInputStream;
 
 public class HttpHandler {
 
@@ -24,12 +30,17 @@ public class HttpHandler {
         try {
             URL url = new URL(reqUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestProperty("Accept-Encoding", "gzip");
             conn.setUseCaches(true);
             conn.setRequestMethod("GET");
             // read the response
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            response = convertStreamToString(in);
-            in.close();
+            if ("gzip".equals(conn.getContentEncoding())) {
+                response = convertStreamToStringGzip(conn.getInputStream());
+            } else {
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                response = convertStreamToString(in);
+                in.close();
+            }
         } catch (MalformedURLException e) {
             Log.e(TAG, "MalformedURLException: " + e.getMessage());
         } catch (ProtocolException e) {
@@ -62,5 +73,28 @@ public class HttpHandler {
         }
 
         return sb.toString();
+    }
+
+    private String convertStreamToStringGzip(InputStream inputStream) {
+        String body = null;
+        String charset = "UTF-8";
+
+        try (
+                InputStream gzippedResponse = inputStream;
+                InputStream unGzippedResponse = new GZIPInputStream(gzippedResponse);
+                Reader reader = new InputStreamReader(unGzippedResponse, charset);
+                Writer writer = new StringWriter();
+        ) {
+            char[] buffer = new char[10240];
+            for (int length = 0; (length = reader.read(buffer)) > 0;) {
+                writer.write(buffer, 0, length);
+            }
+            body = writer.toString();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return body;
     }
 }
