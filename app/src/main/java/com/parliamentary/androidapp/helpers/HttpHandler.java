@@ -31,6 +31,8 @@ public class HttpHandler {
             URL url = new URL(reqUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Accept-Encoding", "gzip");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
             conn.setUseCaches(true);
             conn.setRequestMethod("GET");
             // read the response

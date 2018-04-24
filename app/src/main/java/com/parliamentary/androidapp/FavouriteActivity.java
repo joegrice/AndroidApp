@@ -1,10 +1,10 @@
 package com.parliamentary.androidapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -22,10 +22,12 @@ import com.parliamentary.androidapp.adapters.CommonsDivisionsAdapter;
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.helpers.NavigationHelper;
 import com.parliamentary.androidapp.models.CommonsDivision;
-import com.parliamentary.androidapp.tasks.GetListFavouriteCommonsDivisionsTask;
+import com.parliamentary.androidapp.tasks.GetCommonsDivisionTask;
+import com.parliamentary.androidapp.tasks.GetMpCommonsDivisionsTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static android.support.design.widget.BottomNavigationView.GONE;
 import static android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener;
@@ -36,6 +38,7 @@ public class FavouriteActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private View favProgressBar;
     private TextView progressBarText;
+    private HashMap<String, Long> favourites;
     private String TAG = FavouriteActivity.class.getSimpleName();
 
     @Override
@@ -82,14 +85,14 @@ public class FavouriteActivity extends AppCompatActivity {
                 }
                 GenericTypeIndicator<HashMap<String, Long>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Long>>() {
                 };
-                HashMap<String, Long> favourites = dataSnapshot.child(user.getUid()).child("favourites").getValue(genericTypeIndicator);
+                favourites = dataSnapshot.child(user.getUid()).child("favourites").getValue(genericTypeIndicator);
                 if (favourites == null || favourites.isEmpty()) {
                     listView.setVisibility(GONE);
                     TextView favInfoTextView = findViewById(R.id.favInfoTextView);
                     favInfoTextView.setText("No favourites found...");
                     favInfoTextView.setVisibility(VISIBLE);
                 } else {
-                    getCommonsDivisions(favourites);
+                    getSingleCommonsDivisions();
                 }
             }
 
@@ -101,19 +104,32 @@ public class FavouriteActivity extends AppCompatActivity {
         });
     }
 
-    private void getCommonsDivisions(HashMap<String, Long> favourites) {
-        progressBarText.setText("Getting Commons Divisions...");
-        GetListFavouriteCommonsDivisionsTask asyncTask = new GetListFavouriteCommonsDivisionsTask(new AsyncResponse() {
+    private void getSingleCommonsDivisions() {
+        final ArrayList<CommonsDivision> commonsDivisions = new ArrayList<>();
+        for (Map.Entry<String, Long> entry : favourites.entrySet()) {
+            GetCommonsDivisionTask commonsDivisionTask = new GetCommonsDivisionTask(new AsyncResponse() {
+                @Override
+                public void processFinish(Object output) {
+                    CommonsDivision commonsDivision = (CommonsDivision) output;
+                    if (commonsDivision != null) {
+                        int found = commonsDivisions.size();
+                        progressBarText.setText("Commons Divisions Found: " + ++found);
+                        commonsDivisions.add((CommonsDivision) output);
+                        displayData(commonsDivisions);
+                    }
+                }
+            });
+            String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + entry.getValue() + ".json";
+            commonsDivisionTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, divisionUrl, favourites);
+        }
+    }
 
-            @Override
-            public void processFinish(Object output) {
-                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                ListView listView = findViewById(R.id.favouritesListView);
-                CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, firebaseAuth, commonsDivisions);
-                listView.setAdapter(adapter);
-                favProgressBar.setVisibility(GONE);
-            }
-        });
-        asyncTask.execute(favourites);
+    private void displayData(ArrayList<CommonsDivision> commonsDivisions) {
+        if (favourites.size() == commonsDivisions.size()) {
+            ListView listView = findViewById(R.id.favouritesListView);
+            CommonsDivisionsAdapter adapter = new CommonsDivisionsAdapter(FavouriteActivity.this, firebaseAuth, commonsDivisions);
+            listView.setAdapter(adapter);
+            favProgressBar.setVisibility(GONE);
+        }
     }
 }

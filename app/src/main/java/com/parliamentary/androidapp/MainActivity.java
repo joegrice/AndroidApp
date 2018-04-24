@@ -1,10 +1,10 @@
 package com.parliamentary.androidapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,7 +24,12 @@ import com.parliamentary.androidapp.adapters.CommonsDivisionsAdapter;
 import com.parliamentary.androidapp.data.AsyncResponse;
 import com.parliamentary.androidapp.helpers.NavigationHelper;
 import com.parliamentary.androidapp.models.CommonsDivision;
-import com.parliamentary.androidapp.tasks.GetListCommonsDivisionsTask;
+import com.parliamentary.androidapp.tasks.GetCommonsDivisionTask;
+import com.parliamentary.androidapp.tasks.GetCommonsDivisionsPageTask;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
         mainListView.setOnScrollListener(this);
 
         // Update Ui
-        getFavourites();
+        getFavourites(false);
     }
 
     private void updateContent() {
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
         addListCommonsDivisions();
     }
 
-    private void getFavourites() {
+    private void getFavourites(final boolean update) {
         mainProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Checking User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
                 } else {
                     favourites = dataSnapshot.getValue(genericTypeIndicator);
                 }
-                getListCommonsDivisions();
+                getListCommonsDivisions(update);
             }
 
             @Override
@@ -103,21 +108,64 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
         });
     }
 
-    private void getListCommonsDivisions() {
-        progressBarText.setText("Getting Commons Divisions...");
-        GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(progressBarText, new AsyncResponse() {
+    private void getListCommonsDivisions(final boolean update) {
+        progressBarText.setText("Getting Commons Divisions Page...");
+        GetCommonsDivisionsPageTask asyncTask = new GetCommonsDivisionsPageTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
-                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                adapter = new CommonsDivisionsAdapter(MainActivity.this, firebaseAuth, commonsDivisions);
+                JSONArray commonsDivisions = (JSONArray) output;
+                if (commonsDivisions != null) {
+                    progressBarText.setText("Found Commons Divisions Page...");
+                    getSingleCommonsDivisions(update, commonsDivisions);
+                }
+            }
+        });
+        asyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, pageNumber);
+    }
+
+    private void getSingleCommonsDivisions(final boolean update, final JSONArray jsonArray) {
+        final ArrayList<CommonsDivision> commonsDivisions = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            GetCommonsDivisionTask commonsDivisionTask = new GetCommonsDivisionTask(new AsyncResponse() {
+                @Override
+                public void processFinish(Object output) {
+                    CommonsDivision commonsDivision = (CommonsDivision) output;
+                    if (commonsDivision != null) {
+                        int found = commonsDivisions.size();
+                        progressBarText.setText("Commons Divisions Found: " + ++found);
+                        commonsDivisions.add((CommonsDivision) output);
+                        displayData(update, jsonArray, commonsDivisions);
+                    }
+                }
+            });
+            try {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String _about = jsonObject.getString("_about");
+                String[] aboutSplit = _about.split("/");
+                String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + aboutSplit[aboutSplit.length - 1] + ".json";
+                commonsDivisionTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, divisionUrl, favourites);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void displayData(boolean update, JSONArray jsonArray, ArrayList<CommonsDivision> commonsDivisions) {
+        if (jsonArray.length() == commonsDivisions.size()) {
+            if (!update) {
+                adapter = new CommonsDivisionsAdapter(getApplicationContext(), firebaseAuth, commonsDivisions);
                 ListView listView = findViewById(R.id.mainListView);
                 listView.setAdapter(adapter);
                 mFlagOnScrollBeingProcessed = false;
                 mainProgressBar.setVisibility(View.GONE);
+            } else {
+                adapter.addAll(commonsDivisions);
+                mFlagOnScrollBeingProcessed = false;
+                mainProgressBar.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
-        });
-        asyncTask.execute(pageNumber, favourites);
+        }
     }
 
     private void addListCommonsDivisions() {
@@ -125,18 +173,7 @@ public class MainActivity extends AppCompatActivity implements OnScrollListener 
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         mainProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Updating Commons Divisions...");
-        GetListCommonsDivisionsTask asyncTask = new GetListCommonsDivisionsTask(progressBarText, new AsyncResponse() {
-
-            @Override
-            public void processFinish(Object output) {
-                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                adapter.addAll(commonsDivisions);
-                mFlagOnScrollBeingProcessed = false;
-                mainProgressBar.setVisibility(View.GONE);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-            }
-        });
-        asyncTask.execute(pageNumber, favourites);
+        getFavourites(true);
     }
 
     @Override

@@ -2,12 +2,12 @@ package com.parliamentary.androidapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -33,8 +33,13 @@ import com.parliamentary.androidapp.helpers.NavigationHelper;
 import com.parliamentary.androidapp.models.CommonsDivision;
 import com.parliamentary.androidapp.models.MpParliamentProfile;
 import com.parliamentary.androidapp.tasks.DownloadImageTask;
-import com.parliamentary.androidapp.tasks.GetListMpCommonsDivisionsTask;
+import com.parliamentary.androidapp.tasks.GetCommonsDivisionsPageTask;
+import com.parliamentary.androidapp.tasks.GetMpCommonsDivisionsTask;
 import com.parliamentary.androidapp.tasks.GetMpNameTask;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,7 +106,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
                     mpParliamentProfile.CommonsParty = dataSnapshot.child(user.getUid()).child("mp").child("commonsParty").getValue(String.class);
                     mpParliamentProfile.MemberImg = dataSnapshot.child(user.getUid()).child("mp").child("memberImg").getValue(String.class);
                     displayMP();
-                    getFavourites();
+                    getFavourites(false);
                 } else {
                     askUserForPostCode();
                 }
@@ -147,7 +152,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         addMPCommonsDivisions();
     }
 
-    private void getFavourites() {
+    private void getFavourites(final boolean update) {
         mpProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Checking User Favourites...");
         final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -165,7 +170,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
                 } else {
                     favourites = dataSnapshot.getValue(genericTypeIndicator);
                 }
-                getMPCommonsDivisions();
+                getCommonsDivisionsPage(update);
             }
 
             @Override
@@ -181,34 +186,66 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         mpProgressBar.setVisibility(View.VISIBLE);
         progressBarText.setText("Updating Mp Commons Divisions...");
-        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(progressBarText, new AsyncResponse() {
+        getFavourites(true);
+    }
+
+    private void getCommonsDivisionsPage(final boolean update) {
+        progressBarText.setText("Getting Mp Commons Divisions...");
+        GetCommonsDivisionsPageTask asyncTask = new GetCommonsDivisionsPageTask(new AsyncResponse() {
 
             @Override
             public void processFinish(Object output) {
-                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
+                JSONArray commonsDivisions = (JSONArray) output;
+                if (commonsDivisions != null) {
+                    progressBarText.setText("Found Commons Divisions Page...");
+                    getSingleCommonsDivisions(update, commonsDivisions);
+                }
+            }
+        });
+        asyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, pageNumber);
+    }
+
+    private void getSingleCommonsDivisions(final boolean update, final JSONArray jsonArray) {
+        final ArrayList<CommonsDivision> commonsDivisions = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            GetMpCommonsDivisionsTask commonsDivisionTask = new GetMpCommonsDivisionsTask(new AsyncResponse() {
+                @Override
+                public void processFinish(Object output) {
+                    CommonsDivision commonsDivision = (CommonsDivision) output;
+                    if (commonsDivision != null) {
+                        int found = commonsDivisions.size();
+                        progressBarText.setText("Commons Divisions Found: " + ++found);
+                        commonsDivisions.add((CommonsDivision) output);
+                        displayData(update, jsonArray, commonsDivisions);
+                    }
+                }
+            });
+            try {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String _about = jsonObject.getString("_about");
+                String[] aboutSplit = _about.split("/");
+                String divisionUrl = "http://lda.data.parliament.uk/commonsdivisions/id/" + aboutSplit[aboutSplit.length - 1] + ".json";
+                commonsDivisionTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, divisionUrl, favourites, mpParliamentProfile);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void displayData(boolean update, JSONArray jsonArray, ArrayList<CommonsDivision> commonsDivisions) {
+        if (jsonArray.length() == commonsDivisions.size()) {
+            if (!update) {
+                adapter = new MpCommonsDivisionsAdapter(getApplicationContext(), firebaseAuth, commonsDivisions);
+                ListView listView = mpVotedList;
+                listView.setAdapter(adapter);
+                mpProgressBar.setVisibility(View.GONE);
+            } else {
                 adapter.addAll(commonsDivisions);
                 mFlagOnScrollBeingProcessed = false;
                 mpProgressBar.setVisibility(View.GONE);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
-        });
-        asyncTask.execute(mpParliamentProfile, favourites, pageNumber);
-    }
-
-    private void getMPCommonsDivisions() {
-        progressBarText.setText("Getting Mp Commons Divisions...");
-        GetListMpCommonsDivisionsTask asyncTask = new GetListMpCommonsDivisionsTask(progressBarText, new AsyncResponse() {
-
-            @Override
-            public void processFinish(Object output) {
-                ArrayList<CommonsDivision> commonsDivisions = (ArrayList<CommonsDivision>) output;
-                adapter = new MpCommonsDivisionsAdapter(MpActivity.this, firebaseAuth, commonsDivisions);
-                ListView listView = mpVotedList;
-                listView.setAdapter(adapter);
-                mpProgressBar.setVisibility(View.GONE);
-            }
-        });
-        asyncTask.execute(mpParliamentProfile, favourites, pageNumber);
+        }
     }
 
     private void getNewMP() {
@@ -220,10 +257,10 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
                 mpParliamentProfile = (MpParliamentProfile) output;
                 displayMP();
                 saveUserMpToDatabase();
-                getFavourites();
+                getFavourites(false);
             }
         });
-        asyncTask.execute(postcode);
+        asyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, postcode);
     }
 
     private void displayMP() {
@@ -232,7 +269,7 @@ public class MpActivity extends AppCompatActivity implements OnScrollListener {
         ((TextView) findViewById(R.id.text_commonsconstituency)).setText(mpParliamentProfile.CommonsConstituency);
         ((TextView) findViewById(R.id.text_commonsparty)).setText(mpParliamentProfile.CommonsParty);
         new DownloadImageTask((ImageView) findViewById(R.id.image_member))
-                .execute(mpParliamentProfile.MemberImg);
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mpParliamentProfile.MemberImg);
     }
 
     private void askUserForPostCode() {
